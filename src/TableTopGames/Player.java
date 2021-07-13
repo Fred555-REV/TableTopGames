@@ -25,6 +25,8 @@ public class Player {
     }
 
     public static void play(Player player) {
+        System.out.println("ready?");
+        scan.nextLine();
         System.out.println("roll 1");
         for (Dice die : player.dice) {
             Dice.initialRoll(die);
@@ -42,7 +44,7 @@ public class Player {
                 int rollThis = scan.nextInt() - 1;
                 diceToRoll.add(rollThis);
 
-                if (j == diceAmount-1) {
+                if (j == diceAmount - 1) {
                     Dice.roll(player.dice, diceToRoll);
                 }
             }
