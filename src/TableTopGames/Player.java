@@ -27,19 +27,26 @@ public class Player {
     public static void play(Player player) {
         System.out.println("roll 1");
         for (Dice die : player.dice) {
-            Dice.roll(die);
-            System.out.println(die);
+            Dice.initialRoll(die);
+            System.out.println(die.number);
         }
         for (int i = 2; i <= 3; i++) {
             System.out.println("roll " + i);
             System.out.println("how many dice would you like to roll?");
             int diceAmount = scan.nextInt();
+            Display.dice(player);
+            List<Integer> diceToRoll = new ArrayList<>();
             for (int j = 0; j < diceAmount; j++) {
 
-                System.out.println("which die?");
-                int rollThis = scan.nextInt();
+                System.out.println("which die? 1/2/3/4/5");
+                int rollThis = scan.nextInt() - 1;
+                diceToRoll.add(rollThis);
+
+                if (j == diceAmount-1) {
+                    Dice.roll(player.dice, diceToRoll);
+                }
             }
-            Display.dice(player);
+
         }
         Turn.turnPass();
     }

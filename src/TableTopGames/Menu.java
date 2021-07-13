@@ -22,11 +22,15 @@ public class Menu {
             String color = scan.nextLine();
 
             Player player = new Player(name, color);
-            Turn.players.add(player);
+            Turn.addPlayer(player);
             Player.getDice(player);
         }
-        while (scan.hasNext()) {
+        Turn.setTurns();
+        while (Turn.turnMax != 0) {
             Turn.displayTurn();
+            Turn.displayTurnsLeft();
+            Player.play(Turn.players.get(Turn.turnCounter));
         }
+
     }
 }
