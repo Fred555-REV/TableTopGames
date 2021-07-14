@@ -48,7 +48,8 @@ public class Player {
                     Die.roll(player.dice, diceToRoll);
                 }
             }
-
+            System.out.println("Final Dice");
+            Display.dice(player);
         }
         Turn.turnPass();
     }

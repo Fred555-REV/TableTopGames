@@ -44,7 +44,6 @@ public class Turn {
             turnCounter++;
         }
         turnMax--;
-        displayTurn();
     }
 
     public static void turnBack(Player player) {
