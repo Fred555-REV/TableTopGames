@@ -10,7 +10,7 @@ public class Player {
     String name;
     String color;
     int score;
-    Dice[] dice = new Dice[5];
+    Die[] dice = new Die[5];
 
     public Player(String name, String color) {
         this.name = name;
@@ -20,7 +20,7 @@ public class Player {
 
     public static void getDice(Player player) {
         for (int i = 0; i < 5; i++) {
-            player.dice[i] = new Dice();
+            player.dice[i] = new Die();
         }
     }
 
@@ -28,8 +28,8 @@ public class Player {
         System.out.println("ready?");
         scan.nextLine();
         System.out.println("roll 1");
-        for (Dice die : player.dice) {
-            Dice.initialRoll(die);
+        for (Die die : player.dice) {
+            Die.initialRoll(die);
             System.out.println(die.number);
         }
         for (int i = 2; i <= 3; i++) {
@@ -45,7 +45,7 @@ public class Player {
                 diceToRoll.add(rollThis);
 
                 if (j == diceAmount - 1) {
-                    Dice.roll(player.dice, diceToRoll);
+                    Die.roll(player.dice, diceToRoll);
                 }
             }
 
