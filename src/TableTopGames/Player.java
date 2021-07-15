@@ -51,6 +51,7 @@ public class Player {
             System.out.println("Final Dice");
             Display.dice(player);
         }
+        scan.nextLine();
         Turn.turnPass();
     }
 }
