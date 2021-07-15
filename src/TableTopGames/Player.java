@@ -29,7 +29,7 @@ public class Player {
         scan.nextLine();
         System.out.println("roll 1");
         for (Die die : player.dice) {
-            Die.initialRoll(die);
+            Die.roll(die);
             System.out.println(die.number);
         }
         for (int i = 2; i <= 3; i++) {
