@@ -30,17 +30,19 @@ public class Player {
         System.out.println("roll 1");
         for (Die die : player.dice) {
             Die.roll(die);
-            System.out.println(die.number);
         }
+        Display.dice(player);
         for (int i = 2; i <= 3; i++) {
             System.out.println("roll " + i);
             System.out.println("how many dice would you like to roll?");
             int diceAmount = scan.nextInt();
             Display.dice(player);
             List<Integer> diceToRoll = new ArrayList<>();
+            if (diceAmount != 0) {
+                System.out.println("which die/dice? 1/2/3/4/5");
+            }
             for (int j = 0; j < diceAmount; j++) {
 
-                System.out.println("which die? 1/2/3/4/5");
                 int rollThis = scan.nextInt() - 1;
                 diceToRoll.add(rollThis);
 

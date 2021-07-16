@@ -3,8 +3,9 @@ package TableTopGames;
 public class Display {
     public static void dice(Player player) {
         for (int i = 0; i < 5; i++) {
-            System.out.println(player.dice[i].number);
+            System.out.print(player.dice[i].number + " ");
         }
+        System.out.println();
     }
 
     public static void possibleScores(Player player) {
