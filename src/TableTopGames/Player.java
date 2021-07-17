@@ -10,6 +10,7 @@ public class Player {
     String name;
     String color;
     int score;
+    int scoreSheet[] = new int[13];
     Die[] dice = new Die[5];
 
     public Player(String name, String color) {
@@ -26,7 +27,10 @@ public class Player {
 
     public static void play(Player player) {
         System.out.println("ready?");
-        scan.nextLine();
+        String ready = scan.nextLine();
+        if(ready.equalsIgnoreCase("Chicken")){
+            System.out.println("chicken");
+        }
         System.out.println("roll 1");
         for (Die die : player.dice) {
             Die.roll(die);
@@ -55,8 +59,9 @@ public class Player {
             }
             if (i == 3 || diceAmount == 0) {
                 System.out.println("\nFinal Dice");
-            Display.dice(player);
-            Display.possibleScores(player);
+                Display.dice(player);
+                Score.add(player);
+                Display.score(player);
             } else {
                 Display.dice(player);
             }

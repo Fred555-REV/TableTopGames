@@ -20,6 +20,26 @@ public class Display {
         System.out.println();
     }
 
+    public static void score(Player player) {
+        System.out.println("Score is " + player.score + " for " + player.name);
+    }
+
+    public static void scoreIndex() {
+        System.out.println("ones index = 0");
+        System.out.println("twos index = 1");
+        System.out.println("threes index = 2");
+        System.out.println("fours index = 3");
+        System.out.println("fives index = 4");
+        System.out.println("sixes index = 5");
+        System.out.println("three of a kind index = 6");
+        System.out.println("four of a kind index = 7");
+        System.out.println("full house index = 8");
+        System.out.println("small straight index = 9");
+        System.out.println("large straight index = 10");
+        System.out.println("five of a kind index = 11");
+        System.out.println("chancge index = 12");
+    }
+
     public static void possibleScores(Player player) {
 
         Display.ones(player);
@@ -114,14 +134,16 @@ public class Display {
     public static void threeOAK(Player player) {
         for (int i = 0; i < player.dice.length; i++) {
             int count = 0;
+            int total = 0;
             for (int j = 0; j < player.dice.length; j++) {
                 if (player.dice[i].number == player.dice[j].number) {
                     count++;
+                    total += player.dice[i].number;
                 }
             }
 //            System.out.println("count " + count);
             if (count == 3) {
-                System.out.println("Three of a Kind = ");
+                System.out.println("Three of a Kind = " + total);
                 break;
             }
 //            System.out.println("i " + i);
@@ -132,14 +154,16 @@ public class Display {
     public static void fourOAK(Player player) {
         for (int i = 0; i < player.dice.length; i++) {
             int count = 0;
+            int total = 0;
             for (int j = 0; j < player.dice.length; j++) {
                 if (player.dice[i].number == player.dice[j].number) {
                     count++;
+                    total += player.dice[i].number;
                 }
             }
 //            System.out.println("count " + count);
             if (count == 4) {
-                System.out.println("Four of a Kind = ");
+                System.out.println("Four of a Kind = " + total);
                 break;
             }
 //            System.out.println("i " + i);
@@ -148,10 +172,10 @@ public class Display {
     }
 
     public static void fullHouse(Player player) {
-        int count1 = 0;
-        int count2 = 0;
-        int threeOAK = 0;
         for (int i = 0; i < player.dice.length; i++) {
+            int count1 = 0;
+            int count2 = 0;
+            int threeOAK = 0;
             for (int j = 0; j < player.dice.length; j++) {
                 if (player.dice[i].number == player.dice[j].number) {
                     count1++;
@@ -160,17 +184,16 @@ public class Display {
             if (count1 == 3) {
                 threeOAK = player.dice[i].number;
             }
-//            System.out.println("count2 " + count2);
 
             for (int k = 0; k < player.dice.length; k++) {
-                if (player.dice[i].number != threeOAK && player.dice[i].number == player.dice[k].number) {
-                    count2++;
-//                    System.out.println("count2 " + count2);
-                }
+                for (int l = 0; l < player.dice.length; l++)
+                    if (player.dice[k].number != threeOAK && player.dice[k].number == player.dice[l].number) {
+                        count2++;
+                    }
             }
-//            System.out.println("count2 " + count2);
 
-            if (count2 == 2 && threeOAK != 0) {
+
+            if (count2 % 2 == 0 && threeOAK != 0) {
                 System.out.println("Full House = 25");
                 break;
             }
