@@ -10,6 +10,7 @@ public class Player {
     String name;
     String color;
     int score;
+    int scoreSheet[] = new int[13];
     Die[] dice = new Die[5];
 
     public Player(String name, String color) {
@@ -26,21 +27,29 @@ public class Player {
 
     public static void play(Player player) {
         System.out.println("ready?");
-        scan.nextLine();
+        String ready = scan.next();
+        if(ready.equalsIgnoreCase("Chicken")){
+            System.out.println("chicken");
+        }
         System.out.println("roll 1");
         for (Die die : player.dice) {
             Die.roll(die);
-            System.out.println(die.number);
         }
+        Display.dice(player);
         for (int i = 2; i <= 3; i++) {
             System.out.println("roll " + i);
             System.out.println("how many dice would you like to roll?");
             int diceAmount = scan.nextInt();
             Display.dice(player);
             List<Integer> diceToRoll = new ArrayList<>();
+            if (diceAmount == 0) {
+                i = 4;
+            } else {
+                System.out.println("which die/dice? 1/2/3/4/5");
+            }
+
             for (int j = 0; j < diceAmount; j++) {
 
-                System.out.println("which die? 1/2/3/4/5");
                 int rollThis = scan.nextInt() - 1;
                 diceToRoll.add(rollThis);
 
@@ -48,6 +57,7 @@ public class Player {
                     Die.roll(player.dice, diceToRoll);
                 }
             }
+<<<<<<< HEAD
             if (i == 2) {
                 Display.dice(player);
             }
@@ -55,6 +65,18 @@ public class Player {
         System.out.println("Final Dice");
         Display.dice(player);
         scan.nextLine();
+=======
+            if (i == 3 || diceAmount == 0) {
+                System.out.println("\nFinal Dice");
+                Display.dice(player);
+                Score.add(player);
+                Display.score(player);
+            } else {
+                Display.dice(player);
+            }
+        }
+//        scan.next();
+>>>>>>> 006277f461420cc0c02c07dd9e602f47d6d979a8
         Turn.turnPass();
     }
 }
