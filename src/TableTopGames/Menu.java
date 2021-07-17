@@ -21,11 +21,11 @@ public class Menu {
         System.out.println("player 1\n");
         Player player1 = new Player("player 1", "red");
         Player.getDice(player1);
-        player1.dice[0].number = 5;
-        player1.dice[1].number = 5;
+        player1.dice[0].number = 1;
+        player1.dice[1].number = 2;
         player1.dice[2].number = 3;
-        player1.dice[3].number = 5;
-        player1.dice[4].number = 3;
+        player1.dice[3].number = 4;
+        player1.dice[4].number = 5;
         Display.dice(player1);
         Display.possibleScores(player1);
 
