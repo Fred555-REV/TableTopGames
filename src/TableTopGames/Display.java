@@ -97,7 +97,7 @@ public class Display {
                         System.out.println("large straight index = 10");
                         break;
                     case 11:
-                        System.out.println("five of a kind index = 11");
+                        System.out.println("Yahtzee! index = 11");
                         break;
                     case 12:
                         System.out.println("chance index = 12");

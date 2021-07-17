@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Menu {
-    //Testing laptop github pushing with new ssh
+    // YAHTZEE!
     public static void main(String[] args) {
         // v v v This is the game v v v
 
@@ -17,6 +17,7 @@ public class Menu {
         }
 
         // comment ^^^ this ^^^ out to manually test certain rolls
+        // or enter 0 for amount of players
 
         System.out.println("player 1\n");
         Player player1 = new Player("player 1", "red");
