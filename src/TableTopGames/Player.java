@@ -57,15 +57,6 @@ public class Player {
                     Die.roll(player.dice, diceToRoll);
                 }
             }
-<<<<<<< HEAD
-            if (i == 2) {
-                Display.dice(player);
-            }
-        }
-        System.out.println("Final Dice");
-        Display.dice(player);
-        scan.nextLine();
-=======
             if (i == 3 || diceAmount == 0) {
                 System.out.println("\nFinal Dice");
                 Display.dice(player);
@@ -76,7 +67,6 @@ public class Player {
             }
         }
 //        scan.next();
->>>>>>> 006277f461420cc0c02c07dd9e602f47d6d979a8
         Turn.turnPass();
     }
 }
