@@ -55,8 +55,11 @@ public class Player {
             }
             if (i == 3 || diceAmount == 0) {
                 System.out.println("\nFinal Dice");
-            }
             Display.dice(player);
+            Display.possibleScores(player);
+            } else {
+                Display.dice(player);
+            }
         }
         scan.nextLine();
         Turn.turnPass();
