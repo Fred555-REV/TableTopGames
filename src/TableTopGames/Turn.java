@@ -12,8 +12,8 @@ public class Turn {
     public static void createPlayers(){
         Scanner scan = new Scanner(System.in);
 
-
-        System.out.println("How many players will play?");
+        System.out.println("Welcome to YachtSea");
+        System.out.println("How many players will there be?");
         int playerNum = scan.nextInt();
         scan.nextLine();
 
@@ -46,8 +46,9 @@ public class Turn {
         turnMax--;
     }
 
-    public static void turnBack(Player player) {
-        turnCounter--;//for accidents
+    public static void turnBack() {
+        turnCounter--;
+        turnMax++;//for accidents
     }
 
     public static void displayTurn() {
