@@ -24,21 +24,21 @@ public class Display {
         System.out.println("Score is " + player.score + " for " + player.name);
     }
 
-    public static void scoreIndex() {
-        System.out.println("ones index = 0");
-        System.out.println("twos index = 1");
-        System.out.println("threes index = 2");
-        System.out.println("fours index = 3");
-        System.out.println("fives index = 4");
-        System.out.println("sixes index = 5");
-        System.out.println("three of a kind index = 6");
-        System.out.println("four of a kind index = 7");
-        System.out.println("full house index = 8");
-        System.out.println("small straight index = 9");
-        System.out.println("large straight index = 10");
-        System.out.println("five of a kind index = 11");
-        System.out.println("chancge index = 12");
-    }
+//    public static void scoreIndex() {
+//        System.out.println("ones index = 0");
+//        System.out.println("twos index = 1");
+//        System.out.println("threes index = 2");
+//        System.out.println("fours index = 3");
+//        System.out.println("fives index = 4");
+//        System.out.println("sixes index = 5");
+//        System.out.println("three of a kind index = 6");
+//        System.out.println("four of a kind index = 7");
+//        System.out.println("full house index = 8");
+//        System.out.println("small straight index = 9");
+//        System.out.println("large straight index = 10");
+//        System.out.println("five of a kind index = 11");
+//        System.out.println("chancge index = 12");
+//    }
 
     public static void possibleScores(Player player) {
 
@@ -57,6 +57,54 @@ public class Display {
         Display.lgStraight(player);
         Display.fiveOAK(player);    // of a kind
         Display.chance(player);
+    }
+
+    public static void availableScores(Player player) {
+        for (int i = 0; i < player.scoreSheet.length; i++) {
+            if (player.scoreSheet[i] != 5) {
+                switch (i){
+                    case 0:
+                        System.out.println("ones index = 0");
+                        break;
+                    case 1:
+                        System.out.println("twos index = 1");
+                        break;
+                    case 2:
+                        System.out.println("threes index = 2");
+                        break;
+                    case 3:
+                        System.out.println("fours index = 3");
+                        break;
+                    case 4:
+                        System.out.println("fives index = 4");
+                        break;
+                    case 5:
+                        System.out.println("sixes index = 5");
+                        break;
+                    case 6:
+                        System.out.println("three of a kind index = 6");
+                        break;
+                    case 7:
+                        System.out.println("four of a kind index = 7");
+                        break;
+                    case 8:
+                        System.out.println("full house index = 8");
+                        break;
+                    case 9:
+                        System.out.println("small straight index = 9");
+                        break;
+                    case 10:
+                        System.out.println("large straight index = 10");
+                        break;
+                    case 11:
+                        System.out.println("five of a kind index = 11");
+                        break;
+                    case 12:
+                        System.out.println("chance index = 12");
+                        break;
+                }
+            }
+        }
     }
 
     public static void ones(Player player) {

@@ -12,9 +12,11 @@ public class Score {
         if (nice.equalsIgnoreCase("nice")) {
             System.out.println(nice);
         }
-        System.out.println("Which score would you like to add? enter index, if no scores available choose one to erase");
-        Display.scoreIndex();
+        System.out.println("These are available scores to add or erase");
+        Display.availableScores(player);
+        System.out.println("Which score would you like to add? enter index");
         int index = scan.nextInt();
+        scan.nextLine();
         if (player.scoreSheet[index] != 5) {
             player.scoreSheet[index] = 5;
             switch (index) {
@@ -61,7 +63,7 @@ public class Score {
         } else {
             Score.add(player);
         }
-        scan.close();
+//        scan.close();
     }
 
     public static void ones(Player player) {

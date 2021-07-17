@@ -27,7 +27,7 @@ public class Player {
 
     public static void play(Player player) {
         System.out.println("ready?");
-        String ready = scan.nextLine();
+        String ready = scan.next();
         if(ready.equalsIgnoreCase("Chicken")){
             System.out.println("chicken");
         }
@@ -66,7 +66,7 @@ public class Player {
                 Display.dice(player);
             }
         }
-        scan.nextLine();
+//        scan.next();
         Turn.turnPass();
     }
 }
