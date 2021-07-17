@@ -213,6 +213,7 @@ public class Score {
 
             if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
                 System.out.println("Full House = 25");
+                player.score+=25;
                 break;
             }
         }
