@@ -38,9 +38,12 @@ public class Player {
             int diceAmount = scan.nextInt();
             Display.dice(player);
             List<Integer> diceToRoll = new ArrayList<>();
-            if (diceAmount != 0) {
+            if (diceAmount == 0) {
+                i = 4;
+            } else {
                 System.out.println("which die/dice? 1/2/3/4/5");
             }
+
             for (int j = 0; j < diceAmount; j++) {
 
                 int rollThis = scan.nextInt() - 1;
@@ -50,7 +53,9 @@ public class Player {
                     Die.roll(player.dice, diceToRoll);
                 }
             }
-            System.out.println("Final Dice");
+            if (i == 3 || diceAmount == 0) {
+                System.out.println("\nFinal Dice");
+            }
             Display.dice(player);
         }
         scan.nextLine();

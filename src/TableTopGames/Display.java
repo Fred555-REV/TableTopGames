@@ -1,9 +1,19 @@
 package TableTopGames;
 
+
 public class Display {
     public static void dice(Player player) {
+        System.out.println();
         for (int i = 0; i < 5; i++) {
-            System.out.print(player.dice[i].number + " ");
+            System.out.print("/¯¯¯\\");
+        }
+        System.out.println();
+        for (int i = 0; i < 5; i++) {
+            System.out.print("|" + " " + player.dice[i].number + " " + "|");
+        }
+        System.out.println();
+        for (int i = 0; i < 5; i++) {
+            System.out.print("\\___/");
         }
         System.out.println();
     }
