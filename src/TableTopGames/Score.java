@@ -185,7 +185,7 @@ public class Score {
             }
 //            System.out.println("count " + count);
             if (count == 3) {
-                System.out.println("Three of a Kind = ");
+                System.out.println("Three of a Kind = " + total);
                 player.score += total;
                 break;
             }
@@ -206,7 +206,7 @@ public class Score {
             }
 //            System.out.println("count " + count);
             if (count == 4) {
-                System.out.println("Four of a Kind = ");
+                System.out.println("Four of a Kind = " + total);
                 player.score += total;
                 break;
             }
@@ -216,6 +216,7 @@ public class Score {
     }
 
     public static void fullHouse(Player player) {
+        player.scoreSheet[8] = 1;
         for (int i = 0; i < player.dice.length; i++) {
             int count1 = 0;
             int count2 = 0;
@@ -237,14 +238,15 @@ public class Score {
                         count2++;
                     }
                 }
+                if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0 && player.scoreSheet[8] == 1) {
+                    player.scoreSheet[8] = 5;
+                    System.out.println("Full House = 25");
+                    player.score += 25;
+                    break;
+                }
             }
 
 
-            if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
-                System.out.println("Full House = 25");
-                player.score += 25;
-                break;
-            }
         }
     }
 
