@@ -22,48 +22,71 @@ public class Score {
             switch (index) {
                 case 0:
                     Score.ones(player);
+                    Score.bonus(player);
                     break;
                 case 1:
                     Score.twos(player);
+                    Score.bonus(player);
                     break;
                 case 2:
                     Score.threes(player);
+                    Score.bonus(player);
                     break;
                 case 3:
                     Score.fours(player);
+                    Score.bonus(player);
                     break;
                 case 4:
                     Score.fives(player);
+                    Score.bonus(player);
                     break;
                 case 5:
                     Score.sixes(player);
+                    Score.bonus(player);
                     break;
                 case 6:
                     Score.threeOAK(player);
+                    Score.bonus(player);
                     break;
                 case 7:
                     Score.fourOAK(player);
+                    Score.bonus(player);
                     break;
                 case 8:
                     Score.fullHouse(player);
+                    Score.bonus(player);
                     break;
                 case 9:
                     Score.smStraight(player);
+                    Score.bonus(player);
                     break;
                 case 10:
                     Score.lgStraight(player);
+                    Score.bonus(player);
                     break;
                 case 11:
                     Score.fiveOAK(player);
+                    Score.bonus(player);
                     break;
                 case 12:
                     Score.chance(player);
+                    Score.bonus(player);
                     break;
             }
         } else {
             Score.add(player);
         }
 //        scan.close();
+    }
+
+    public static void bonus(Player player) {
+        if (player.bonus >= 63 && player.scoreSheet[13] != 5) {
+            player.scoreSheet[13] = 5;
+            player.score += 35;
+            System.out.println("You got the bonus " + player.bonus + "/" + 63 + " +35 points");
+        } else if (player.scoreSheet[13] != 5) {
+            System.out.println("Bonus: " + player.bonus + "/" + 63);
+        }
     }
 
     public static void ones(Player player) {
@@ -76,6 +99,7 @@ public class Score {
         if (total != 0) {
             System.out.println("Ones = " + total);
             player.score += total;
+            player.bonus += total;
         }
     }
 
@@ -89,6 +113,7 @@ public class Score {
         if (total != 0) {
             System.out.println("Twos = " + total);
             player.score += total;
+            player.bonus += total;
         }
     }
 
@@ -102,6 +127,7 @@ public class Score {
         if (total != 0) {
             System.out.println("Threes = " + total);
             player.score += total;
+            player.bonus += total;
         }
     }
 
@@ -115,6 +141,7 @@ public class Score {
         if (total != 0) {
             System.out.println("Fours = " + total);
             player.score += total;
+            player.bonus += total;
         }
     }
 
@@ -128,6 +155,7 @@ public class Score {
         if (total != 0) {
             System.out.println("Fives = " + total);
             player.score += total;
+            player.bonus += total;
         }
     }
 
@@ -141,6 +169,7 @@ public class Score {
         if (total != 0) {
             System.out.println("Sixes = " + total);
             player.score += total;
+            player.bonus += total;
         }
     }
 
@@ -213,7 +242,7 @@ public class Score {
 
             if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
                 System.out.println("Full House = 25");
-                player.score+=25;
+                player.score += 25;
                 break;
             }
         }
