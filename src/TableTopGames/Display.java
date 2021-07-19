@@ -257,17 +257,23 @@ public class Display {
         int duplicateCount = 0;
         for (int i = 0; i < player.dice.length; i++) {
             for (int j = 0; j < player.dice.length; j++) {
+//                System.out.println("j " + j + " i " + i);
+
+//                System.out.println("dupe " + duplicateCount + " count " + count);
                 if (player.dice[i].number == player.dice[j].number && j != i) {
                     duplicateCount++;
                 }
                 if (player.dice[i].number == player.dice[j].number + 1) {
                     count++;
                 }
+//                System.out.println("dupe " + duplicateCount + " count " + count);
             }
         }
         if (count == 3 && duplicateCount == 0) {
             System.out.println("Small Straight = 30");
         } else if (count == 4 && duplicateCount == 2) {
+            System.out.println("Small Straight = 30");
+        } else if (count == 5 && duplicateCount == 2) {
             System.out.println("Small Straight = 30");
         }
     }
