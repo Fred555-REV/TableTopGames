@@ -39,7 +39,7 @@ public class Player {
         Display.dice(player);
         for (int i = 2; i <= 3; i++) {
             System.out.println("roll " + i);
-            System.out.println("how many dice would you like to roll?");
+            System.out.println("how many dice would you like to re-roll?");
             int diceAmount = scan.nextInt();
             Display.dice(player);
             List<Integer> diceToRoll = new ArrayList<>();
