@@ -38,9 +38,6 @@ public class Player {
         }
         Display.dice(player);
         for (int i = 2; i <= 3; i++) {
-
-            System.out.println("roll " + i);
-            Display.dice(player);
             List<Integer> diceToRoll = new ArrayList<>();
 
             System.out.println("enter die/dice to re-roll. 0 if none, 1-5 (position) followed by spaces");
@@ -57,11 +54,12 @@ public class Player {
                 }
             }
             if (i == 3 || inputArr.length == 0) {
-                System.out.println("\nFinal Dice");
+                System.out.println("Final Dice");
                 Display.dice(player);
                 Score.add(player);
                 Display.score(player);
             } else {
+            System.out.println("roll " + i);
                 Display.dice(player);
             }
         }
