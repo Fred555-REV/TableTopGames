@@ -15,6 +15,8 @@ public class Menu {
             Turn.displayTurnsLeft();
             Player.play(Turn.players.get(Turn.turnCounter));
         }
-
+        if (Turn.players.size() > 1) {
+            Display.winner();
+        }
     }
 }
