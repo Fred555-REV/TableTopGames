@@ -19,10 +19,9 @@ public class Die {
 
         for (int i = 0; i < dice.length; i++) {
 
-            for (int j = 0; j < diceToRoll.size(); j++) {
-
-                if (i == diceToRoll.get(j)) {
-                    dice[i].number = (int) Math.floor(Math.random() * 6) + 1;
+            for (Integer integer : diceToRoll) {
+                if (i == integer) {
+                    roll(dice[i]);
                 }
 
             }
