@@ -220,7 +220,7 @@ public class Display {
     }
 
     public static void fullHouse(Player player) {
-        Boolean isDone = false;
+        boolean isDone = false;
         for (int i = 0; i < player.dice.length; i++) {
             int count1 = 0;
             int count2 = 0;
