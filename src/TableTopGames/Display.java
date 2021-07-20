@@ -220,7 +220,7 @@ public class Display {
     }
 
     public static void fullHouse(Player player) {
-        player.scoreSheet[8] = 1;
+        Boolean isDone = false;
         for (int i = 0; i < player.dice.length; i++) {
             int count1 = 0;
             int count2 = 0;
@@ -240,12 +240,18 @@ public class Display {
                     if (player.dice[k].number != threeOAK && player.dice[k].number == player.dice[l].number) {
                         count2++;
                     }
+
                 }
-                if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0 && player.scoreSheet[8] == 1) {
-                    player.scoreSheet[8] = 5;
+                if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
                     System.out.println("Full House = 25");
+                    isDone = true;
+                }
+                if (isDone) {
                     break;
                 }
+            }
+            if (isDone) {
+                break;
             }
 
 
