@@ -28,7 +28,7 @@ public class Player {
 
     public static void play(Player player) {
         System.out.println("ready?");
-        String ready = scan.next();
+        String ready = scan.nextLine();
         if (ready.equalsIgnoreCase("Chicken")) {
             System.out.println("chicken");
         }
@@ -38,27 +38,25 @@ public class Player {
         }
         Display.dice(player);
         for (int i = 2; i <= 3; i++) {
+
             System.out.println("roll " + i);
-            System.out.println("how many dice would you like to re-roll?");
-            int diceAmount = scan.nextInt();
             Display.dice(player);
             List<Integer> diceToRoll = new ArrayList<>();
-            if (diceAmount == 0) {
-                i = 4;
-            } else {
-                System.out.println("which die/dice? 1/2/3/4/5");
-            }
 
-            for (int j = 0; j < diceAmount; j++) {
+            System.out.println("enter die/dice to re-roll. 0 if none, 1-5 (position) followed by spaces");
 
-                int rollThis = scan.nextInt() - 1;
-                diceToRoll.add(rollThis);
 
-                if (j == diceAmount - 1) {
+            String input = scan.nextLine();
+            String[] inputArr = input.split(" ");
+            for (int j = 0; j < inputArr.length; j++) {
+                for (String number : inputArr) {
+                    diceToRoll.add(Integer.parseInt(number) - 1);
+                }
+                if (j == inputArr.length - 1) {
                     Die.roll(player.dice, diceToRoll);
                 }
             }
-            if (i == 3 || diceAmount == 0) {
+            if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
                 Display.dice(player);
                 Score.add(player);
