@@ -20,9 +20,9 @@ public class Turn {
         for (int i = 0; i < playerNum; i++) {
 
             System.out.println("Enter name");
-            String name = scan.next();
+            String name = scan.next().trim();
             System.out.println("Enter color");
-            String color = scan.next();
+            String color = scan.next().trim();
 
             Player player = new Player(name, color);
             Turn.addPlayer(player);

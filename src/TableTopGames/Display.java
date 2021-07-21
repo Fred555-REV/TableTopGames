@@ -253,7 +253,7 @@ public class Display {
         boolean isDone = false;
         for (int i = 0; i < player.dice.length; i++) {
             int count1 = 0;
-            int count2 = 0;
+            int count2;
             int threeOAK = 0;
             for (int j = 0; j < player.dice.length; j++) {
                 if (player.dice[i].number == player.dice[j].number) {
