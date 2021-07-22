@@ -22,6 +22,11 @@ public class Display {
         System.out.println();
     }
 
+    public static void allGames() {
+        System.out.println("Yahtzee, index: 1");
+        System.out.println("HighLow, index: 2");
+    }
+
     public static void score(Player player) {
         System.out.println("Score is " + player.score + " for " + player.name);
     }
@@ -70,7 +75,7 @@ public class Display {
         }
     }
 
-    public static void possibleScores(Player player) {
+    public static void possibleYahtzeeScores(Player player) {
 
         Display.ones(player);
         Display.twos(player);
@@ -89,7 +94,7 @@ public class Display {
         Display.chance(player);
     }
 
-    public static void availableScores(Player player) {
+    public static void availableYahtzeeScores(Player player) {
         for (int i = 0; i < player.scoreSheet.length; i++) {
             if (player.scoreSheet[i] != 5) {
                 switch (i) {

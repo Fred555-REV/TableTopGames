@@ -7,12 +7,16 @@ public class Die {
     int number;
     int numOfSides;
 
+    public Die() {
+        this.numOfSides = 6;
+    }
+
     public Die(int numOfSides) {
         this.numOfSides = numOfSides;
     }
 
-    public static void roll(Die die) {
-        die.number = (int) Math.floor(Math.random() * die.numOfSides) + 1;
+    public void roll() {
+        number = (int) Math.floor(Math.random() * numOfSides) + 1;
     }
 
 
@@ -22,7 +26,7 @@ public class Die {
 
             for (Integer integer : diceToRoll) {
                 if (i == integer) {
-                    roll(dice.get(i));
+                    dice.get(i).roll();
                 }
 
             }

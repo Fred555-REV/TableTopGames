@@ -1,19 +1,18 @@
 package TableTopGames;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class Score {
     public static void add(Player player) {
         Scanner scan = new Scanner(System.in);
-        Display.possibleScores(player);
+        Display.possibleYahtzeeScores(player);
         System.out.println("When done looking at possible scores enter \"done\".");
         String nice = scan.next().trim();
         if (nice.equalsIgnoreCase("nice")) {
             System.out.println(nice);
         }
         System.out.println("These are available scores to add or erase");
-        Display.availableScores(player);
+        Display.availableYahtzeeScores(player);
         System.out.println("Which score would you like to add? enter index");
         int index = scan.nextInt();
         scan.nextLine();

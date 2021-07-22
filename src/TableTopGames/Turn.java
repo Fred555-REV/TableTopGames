@@ -10,10 +10,26 @@ public class Turn {
 
     public static int turnMax = 0;
 
+    public static void createPlayers() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("How many players will there be?");
+        int playerNum = scan.nextInt();
+        scan.nextLine();
+
+        for (int i = 0; i < playerNum; i++) {
+
+            System.out.println("Enter name");
+            String name = scan.next().trim();
+            System.out.println("Enter color");
+            String color = scan.next().trim();
+
+            Player player = new Player(name, color);
+            Turn.addPlayer(player);
+        }
+    }
+
     public static void createPlayers(int scoreAmount, int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);
-
-        System.out.println("Welcome to YachtSea");
         System.out.println("How many players will there be?");
         int playerNum = scan.nextInt();
         scan.nextLine();
