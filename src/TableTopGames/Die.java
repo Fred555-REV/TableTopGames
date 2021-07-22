@@ -1,10 +1,9 @@
 package TableTopGames;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Die {
-    int number;
+    int value;
     int numOfSides;
 
     public Die() {
@@ -16,7 +15,7 @@ public class Die {
     }
 
     public void roll() {
-        number = (int) Math.floor(Math.random() * numOfSides) + 1;
+        value = (int) Math.floor(Math.random() * numOfSides) + 1;
     }
 
 

@@ -1,9 +1,7 @@
 package TableTopGames;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class Player {
     String name;
@@ -31,7 +29,7 @@ public class Player {
     public int getTotalDiceValue() {
         int total = 0;
         for (Die die : dice) {
-            total += die.number;
+            total += die.value;
         }
         return total;
     }
