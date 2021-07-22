@@ -1,20 +1,22 @@
 package TableTopGames;
 
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Display {
     public static void dice(Player player) {
         System.out.println();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < player.dice.length; i++) {
             System.out.print("/¯¯¯\\");
         }
         System.out.println();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < player.dice.length; i++) {
             System.out.print("|" + " " + player.dice[i].number + " " + "|");
         }
         System.out.println();
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < player.dice.length; i++) {
             System.out.print("\\___/");
         }
         System.out.println();
@@ -24,7 +26,7 @@ public class Display {
         System.out.println("Score is " + player.score + " for " + player.name);
     }
 
-//    public static void scoreIndex() {
+    //    public static void scoreIndex() {
 //        System.out.println("ones index = 0");
 //        System.out.println("twos index = 1");
 //        System.out.println("threes index = 2");
@@ -39,6 +41,34 @@ public class Display {
 //        System.out.println("five of a kind index = 11");
 //        System.out.println("chancge index = 12");
 //    }
+    public static void winner() {
+        Player winner = Turn.players.get(0);
+        List<Player> winners = new ArrayList<>();
+        List<Player> losers = new ArrayList<>();
+        for (int i = 1; i < Turn.players.size(); i++) {
+            if (Turn.players.get(i).score > winner.score) {
+                losers.add(winner);
+                winner = Turn.players.get(i);
+            } else if (Turn.players.get(i).score == winner.score) {
+                winners.add(Turn.players.get(i));
+                winners.add(winner);
+            } else {
+                losers.add(Turn.players.get(i));
+            }
+        }
+        if (winners.size() > 1) {
+            System.out.println("The winners are");
+            for (Player player : winners) {
+                System.out.println(player.name + " with " + player.score + " points.");
+            }
+        } else {
+            System.out.println("The winner is " + winner.name + " with " + winner.score + " points.");
+        }
+        System.out.println("The losers are");
+        for (Player loser : losers) {
+            System.out.println(loser.name + " with " + loser.score + " points.");
+        }
+    }
 
     public static void possibleScores(Player player) {
 
@@ -223,7 +253,7 @@ public class Display {
         boolean isDone = false;
         for (int i = 0; i < player.dice.length; i++) {
             int count1 = 0;
-            int count2 = 0;
+            int count2;
             int threeOAK = 0;
             for (int j = 0; j < player.dice.length; j++) {
                 if (player.dice[i].number == player.dice[j].number) {

@@ -8,7 +8,7 @@ public class Score {
         Scanner scan = new Scanner(System.in);
         Display.possibleScores(player);
         System.out.println("When done looking at possible scores enter \"done\".");
-        String nice = scan.next();
+        String nice = scan.next().trim();
         if (nice.equalsIgnoreCase("nice")) {
             System.out.println(nice);
         }

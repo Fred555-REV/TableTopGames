@@ -13,6 +13,9 @@ public class Game {
             Turn.displayTurnsLeft();
             play(Turn.getActivePlayer());
         }
+        if (Turn.players.size() > 1) {
+            Display.winner();
+        }
     }
 
     public static void play(Player player) {
