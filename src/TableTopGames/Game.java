@@ -6,19 +6,19 @@ import java.util.Scanner;
 
 public class Game {
     public static void runYahtzee() {
-        Turn.createPlayers();
-        Turn.setTurns();
+        Turn.createPlayers(14, 5);
+        Turn.setTurns(13);
         while (Turn.turnMax != 0) {
             Turn.displayTurn();
             Turn.displayTurnsLeft();
-            play(Turn.getActivePlayer());
+            playYahtzee(Turn.getActivePlayer());
         }
         if (Turn.players.size() > 1) {
             Display.winner();
         }
     }
 
-    public static void play(Player player) {
+    public static void playYahtzee(Player player) {
         Scanner scan = new Scanner(System.in);
         System.out.println("ready?");
         String ready = scan.nextLine();

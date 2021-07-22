@@ -10,13 +10,15 @@ public class Player {
     String color;
     int score;
     int bonus;
-    int scoreSheet[] = new int[14];
+    int[] scoreSheet = new int[14];
     Die[] dice = new Die[5];
 
-    public Player(String name, String color) {
+    public Player(String name, String color, int scoreAmount, int dieAmount) {
         this.name = name;
         this.color = color;
         this.score = 0;
+        this.scoreSheet = new int[scoreAmount];
+        this.dice = new Die[dieAmount];
     }
 
     public void getDice() {

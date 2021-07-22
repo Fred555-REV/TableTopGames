@@ -4,7 +4,7 @@ public class Test {
     public static void main(String[] args) {
 
         System.out.println("player 1\n");
-        Player player1 = new Player("player 1", "red");
+        Player player1 = new Player("player 1", "red", 14, 5);
         player1.getDice();
         player1.dice[0].number = 5; // was displaying full house 3 times as possible score
         player1.dice[1].number = 3;
@@ -41,7 +41,6 @@ public class Test {
 //        Display.dice(player1);
 //        Score.add(player1);
 //        Display.score(player1);
-
 
 
 //        System.out.println("\nplayer 2\n");
