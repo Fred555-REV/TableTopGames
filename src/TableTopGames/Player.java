@@ -10,20 +10,20 @@ public class Player {
     String color;
     int score;
     int bonus;
-    int[] scoreSheet = new int[14];
-    Die[] dice = new Die[5];
+    int[] scoreSheet;
+    List<Die> dice;
 
-    public Player(String name, String color, int scoreAmount, int dieAmount) {
+    public Player(String name, String color, int scoreAmount) {
         this.name = name;
         this.color = color;
         this.score = 0;
         this.scoreSheet = new int[scoreAmount];
-        this.dice = new Die[dieAmount];
+        this.dice = new ArrayList<>();
     }
 
-    public void getDice() {
-        for (int i = 0; i < dice.length; i++) {
-            dice[i] = new Die();
+    public void getDice(int diceAmount, int numOfSides) {
+        for (int i = 0; i < diceAmount; i++) {
+            dice.add(new Die(numOfSides));
         }
     }
 }

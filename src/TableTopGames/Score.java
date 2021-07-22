@@ -91,8 +91,8 @@ public class Score {
 
     public static void ones(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            if (player.dice[i].number == 1) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            if (player.dice.get(i).number == 1) {
                 total++;
             }
         }
@@ -105,8 +105,8 @@ public class Score {
 
     public static void twos(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            if (player.dice[i].number == 2) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            if (player.dice.get(i).number == 2) {
                 total += 2;
             }
         }
@@ -119,8 +119,8 @@ public class Score {
 
     public static void threes(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            if (player.dice[i].number == 3) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            if (player.dice.get(i).number == 3) {
                 total += 3;
             }
         }
@@ -133,8 +133,8 @@ public class Score {
 
     public static void fours(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            if (player.dice[i].number == 4) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            if (player.dice.get(i).number == 4) {
                 total += 4;
             }
         }
@@ -147,8 +147,8 @@ public class Score {
 
     public static void fives(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            if (player.dice[i].number == 5) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            if (player.dice.get(i).number == 5) {
                 total += 5;
             }
         }
@@ -161,8 +161,8 @@ public class Score {
 
     public static void sixes(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            if (player.dice[i].number == 6) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            if (player.dice.get(i).number == 6) {
                 total += 6;
             }
         }
@@ -174,13 +174,13 @@ public class Score {
     }
 
     public static void threeOAK(Player player) {
-        for (int i = 0; i < player.dice.length; i++) {
+        for (int i = 0; i < player.dice.size(); i++) {
             int count = 0;
             int total = 0;
-            for (int j = 0; j < player.dice.length; j++) {
-                if (player.dice[i].number == player.dice[j].number) {
+            for (int j = 0; j < player.dice.size(); j++) {
+                if (player.dice.get(i).number == player.dice.get(j).number) {
                     count++;
-                    total += player.dice[i].number;
+                    total += player.dice.get(i).number;
                 }
             }
 //            System.out.println("count " + count);
@@ -195,13 +195,13 @@ public class Score {
     }
 
     public static void fourOAK(Player player) {
-        for (int i = 0; i < player.dice.length; i++) {
+        for (int i = 0; i < player.dice.size(); i++) {
             int count = 0;
             int total = 0;
-            for (int j = 0; j < player.dice.length; j++) {
-                if (player.dice[i].number == player.dice[j].number) {
+            for (int j = 0; j < player.dice.size(); j++) {
+                if (player.dice.get(i).number == player.dice.get(j).number) {
                     count++;
-                    total += player.dice[i].number;
+                    total += player.dice.get(i).number;
                 }
             }
 //            System.out.println("count " + count);
@@ -217,29 +217,29 @@ public class Score {
 
     public static void fullHouse(Player player) {
         boolean isDone = false;
-        for (int i = 0; i < player.dice.length; i++) {
+        for (int i = 0; i < player.dice.size(); i++) {
             int count1 = 0;
-            int count2 = 0;
+            int count2;
             int threeOAK = 0;
-            for (int j = 0; j < player.dice.length; j++) {
-                if (player.dice[i].number == player.dice[j].number) {
+            for (int j = 0; j < player.dice.size(); j++) {
+                if (player.dice.get(i).number == player.dice.get(j).number) {
                     count1++;
                 }
             }
             if (count1 == 3) {
-                threeOAK = player.dice[i].number;
+                threeOAK = player.dice.get(i).number;
             }
-//            System.out.println("count2 " + count2);
 
-            for (int k = 0; k < player.dice.length; k++) {
+            for (int k = 0; k < player.dice.size(); k++) {
                 count2 = 0;
-                for (int l = 0; l < player.dice.length; l++) {
-                    if (player.dice[k].number != threeOAK && player.dice[k].number == player.dice[l].number) {
+                for (int l = 0; l < player.dice.size(); l++) {
+                    if (player.dice.get(k).number != threeOAK && player.dice.get(k).number == player.dice.get(l).number) {
                         count2++;
                     }
                 }
                 if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
                     System.out.println("Full House = 25");
+                    player.score += 25;
                     isDone = true;
                 }
                 if (isDone) {
@@ -257,12 +257,15 @@ public class Score {
     public static void smStraight(Player player) {
         int count = 0;
         int duplicateCount = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            for (int j = 0; j < player.dice.length; j++) {
-                if (player.dice[i].number == player.dice[j].number && j != i) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            for (int j = 0; j < player.dice.size(); j++) {
+//                System.out.println("j " + j + " i " + i);
+
+//                System.out.println("dupe " + duplicateCount + " count " + count);
+                if (player.dice.get(i).number == player.dice.get(j).number && j != i) {
                     duplicateCount++;
                 }
-                if (player.dice[i].number == player.dice[j].number + 1) {
+                if (player.dice.get(i).number == player.dice.get(j).number + 1) {
                     count++;
                 }
             }
@@ -280,12 +283,12 @@ public class Score {
 //        Arrays.sort(player.dice);
         int count = 0;
         int duplicateCount = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            for (int j = 0; j < player.dice.length; j++) {
-                if (player.dice[i].number == player.dice[j].number && j != i) {
+        for (int i = 0; i < player.dice.size(); i++) {
+            for (int j = 0; j < player.dice.size(); j++) {
+                if (player.dice.get(i).number == player.dice.get(j).number && j != i) {
                     duplicateCount++;
                 }
-                if (player.dice[i].number == player.dice[j].number + 1) {
+                if (player.dice.get(i).number == player.dice.get(j).number + 1) {
                     count++;
                 }
             }
@@ -297,10 +300,10 @@ public class Score {
     }
 
     public static void fiveOAK(Player player) {
-        for (int i = 0; i < player.dice.length; i++) {
+        for (int i = 0; i < player.dice.size(); i++) {
             int count = 0;
-            for (int j = 0; j < player.dice.length; j++) {
-                if (player.dice[i].number == player.dice[j].number) {
+            for (int j = 0; j < player.dice.size(); j++) {
+                if (player.dice.get(i).number == player.dice.get(j).number) {
                     count++;
                 }
             }
@@ -317,8 +320,8 @@ public class Score {
 
     public static void chance(Player player) {
         int total = 0;
-        for (int i = 0; i < player.dice.length; i++) {
-            total += player.dice[i].number;
+        for (int i = 0; i < player.dice.size(); i++) {
+            total += player.dice.get(i).number;
         }
         System.out.println("Chance = " + total);
         player.score += total;

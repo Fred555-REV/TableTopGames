@@ -10,7 +10,7 @@ public class Turn {
 
     public static int turnMax = 0;
 
-    public static void createPlayers(int scoreAmount, int diceAmount) {
+    public static void createPlayers(int scoreAmount, int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome to YachtSea");
@@ -25,9 +25,9 @@ public class Turn {
             System.out.println("Enter color");
             String color = scan.next().trim();
 
-            Player player = new Player(name, color, scoreAmount, diceAmount);
+            Player player = new Player(name, color, scoreAmount);
             Turn.addPlayer(player);
-            player.getDice();
+            player.getDice(diceAmount, numOfSides);
         }
     }
 

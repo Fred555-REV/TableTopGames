@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Game {
     public static void runYahtzee() {
-        Turn.createPlayers(14, 5);
+        Turn.createPlayers(14, 5, 6);
         Turn.setTurns(13);
         while (Turn.turnMax != 0) {
             Turn.displayTurn();
@@ -60,5 +60,9 @@ public class Game {
         }
 //        scan.next();
         Turn.turnPass();
+    }
+
+    public static void playDiceMage(Player player) {
+
     }
 }

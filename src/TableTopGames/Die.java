@@ -5,23 +5,24 @@ import java.util.List;
 
 public class Die {
     int number;
+    int numOfSides;
 
-    public Die() {
-
+    public Die(int numOfSides) {
+        this.numOfSides = numOfSides;
     }
 
     public static void roll(Die die) {
-        die.number = (int) Math.floor(Math.random() * 6) + 1;
+        die.number = (int) Math.floor(Math.random() * die.numOfSides) + 1;
     }
 
 
-    public static void roll(Die[] dice, List<Integer> diceToRoll) {
+    public static void roll(List<Die> dice, List<Integer> diceToRoll) {
 
-        for (int i = 0; i < dice.length; i++) {
+        for (int i = 0; i < dice.size(); i++) {
 
             for (Integer integer : diceToRoll) {
                 if (i == integer) {
-                    roll(dice[i]);
+                    roll(dice.get(i));
                 }
 
             }
