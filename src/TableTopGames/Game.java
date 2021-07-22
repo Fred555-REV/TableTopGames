@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Game {
-    public void run() {
+    public static void run() {
         Display.allGames();
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter index of game you want to play or 0 if you want to exit");
@@ -36,6 +36,7 @@ public class Game {
         if (Turn.players.size() > 1) {
             Display.winner();
         }
+        run();
     }
 
     public static void runHighLow() {
@@ -44,6 +45,7 @@ public class Game {
         for (Player player : Turn.players) {
             playHighLow(player);
         }
+        run();
     }
 
 
