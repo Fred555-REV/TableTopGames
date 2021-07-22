@@ -9,7 +9,8 @@ public class Turn {
     public static List<Player> players = new ArrayList<>();
 
     public static int turnMax = 0;
-    public static void createPlayers(){
+
+    public static void createPlayers() {
         Scanner scan = new Scanner(System.in);
 
         System.out.println("Welcome to YachtSea");
@@ -26,11 +27,16 @@ public class Turn {
 
             Player player = new Player(name, color);
             Turn.addPlayer(player);
-            Player.getDice(player);
+            player.getDice();
         }
     }
+
     public static void addPlayer(Player player) {
         players.add(player);
+    }
+
+    public static Player getActivePlayer() {
+        return Turn.players.get(Turn.turnCounter);
     }
 
     public static void setTurns() {
@@ -54,7 +60,8 @@ public class Turn {
     public static void displayTurn() {
         System.out.println(players.get(turnCounter).name + "'s or " + players.get(turnCounter).color + "'s turn ");
     }
+
     public static void displayTurnsLeft() {
-        System.out.println(turnMax+" turns left in game");
+        System.out.println(turnMax + " turns left in game");
     }
 }
