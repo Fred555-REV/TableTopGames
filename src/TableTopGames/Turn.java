@@ -35,6 +35,7 @@ public class Turn {
 
     public static void createPlayers(int scoreAmount, int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);
+        System.out.println("How many players will there be?");
         int playerNum;
         do {
             playerNum = scan.nextInt();

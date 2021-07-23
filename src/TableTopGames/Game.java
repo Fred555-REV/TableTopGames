@@ -1,11 +1,15 @@
 package TableTopGames;
 
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Game {
+    public static boolean isRunning;
+
     public static void run() {
+        isRunning = true;
         Display.allGames();
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter index of game you want to play or 0 if you want to exit");
@@ -32,11 +36,16 @@ public class Game {
             Turn.displayTurn();
             Turn.displayTurnsLeft();
             playYahtzee(Turn.getActivePlayer());
+            if (!isRunning) {
+                break;
+            }
         }
         if (Turn.players.size() > 1) {
             Display.winner();
         }
-        run();
+        if (isRunning) {
+            run();
+        }
     }
 
     public static void runHighLow() {
@@ -44,8 +53,13 @@ public class Game {
         Turn.createPlayers();
         for (Player player : Turn.players) {
             playHighLow(player);
+            if (!isRunning) {
+                break;
+            }
         }
-        run();
+        if (isRunning) {
+            run();
+        }
     }
 
 
@@ -53,8 +67,9 @@ public class Game {
         Scanner scan = new Scanner(System.in);
         System.out.println("ready?");
         String ready = scan.nextLine();
-        if (ready.equalsIgnoreCase("Chicken")) {
-            System.out.println("chicken");
+        if (ready.equalsIgnoreCase("exit")) {
+            System.out.println("ok");
+            isRunning = false;
         }
         System.out.println("roll 1");
         for (Die die : player.dice) {

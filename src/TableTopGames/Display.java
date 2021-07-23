@@ -30,25 +30,11 @@ public class Display {
         System.out.println("Score is " + player.score + " for " + player.name);
     }
 
-    //    public static void scoreIndex() {
-//        System.out.println("ones index = 0");
-//        System.out.println("twos index = 1");
-//        System.out.println("threes index = 2");
-//        System.out.println("fours index = 3");
-//        System.out.println("fives index = 4");
-//        System.out.println("sixes index = 5");
-//        System.out.println("three of a kind index = 6");
-//        System.out.println("four of a kind index = 7");
-//        System.out.println("full house index = 8");
-//        System.out.println("small straight index = 9");
-//        System.out.println("large straight index = 10");
-//        System.out.println("five of a kind index = 11");
-//        System.out.println("chancge index = 12");
-//    }
     public static void winner() {
         Player winner = Turn.players.get(0);
         List<Player> winners = new ArrayList<>();
         List<Player> losers = new ArrayList<>();
+        // seperates the winner(s) from the losers
         for (int i = 1; i < Turn.players.size(); i++) {
             if (Turn.players.get(i).score > winner.score) {
                 losers.add(winner);
@@ -60,6 +46,7 @@ public class Display {
                 losers.add(Turn.players.get(i));
             }
         }
+        // displays the winner(s) and the losers
         if (winners.size() > 1) {
             System.out.println("The winners are");
             for (Player player : winners) {
@@ -72,6 +59,7 @@ public class Display {
         for (Player loser : losers) {
             System.out.println(loser.name + " with " + loser.score + " points.");
         }
+
     }
 
     public static void possibleYahtzeeScores(Player player) {
