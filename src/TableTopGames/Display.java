@@ -28,6 +28,24 @@ public class Display {
         System.out.println("DiceMage, index: 3");
     }
 
+    public static void availableActions(DiceMage mage) {
+        System.out.println("Actions");
+        int powerUpCost;
+        if (mage.dice.size() > 6) {
+            powerUpCost = 4 + (mage.dice.size() - 6);//+companion amount
+        } else {
+            powerUpCost = 4;//+companion amount
+        }
+        //TODO companion class idk if whole new extends player or extends die?
+        if (mage.mana > powerUpCost) {
+            System.out.println("(1) increase power for " + powerUpCost);
+        }
+        System.out.println("(2)");
+        System.out.println("(3)");
+        System.out.println("(4) view field (doesn't end turn)");
+        System.out.println("(5) end turn");
+    }
+
     public static void score(Player player) {
         System.out.println("Score is " + player.score + " for " + player.name);
     }

@@ -22,6 +22,7 @@ public class Game {
                 runHighLow();
                 break;
             case 3:
+                runDiceMage();
                 break;
         }
         if (index < 0 || index > 2) {
@@ -96,6 +97,13 @@ public class Game {
         mage.addMana();
         mage.stats();
 
+
+        Display.availableActions(mage);
+        int actionIndex = scan.nextInt();
+        scan.nextLine();
+        mage.takeAction(actionIndex);
+
+        Turn.turnPass();
     }
 
     public static void playYahtzee(YahtzeePlayer player) {

@@ -21,7 +21,7 @@ public class DiceMage extends Player {
 
     public void stats() {
         System.out.println(color + " Mage " + name);
-        System.out.printf("Health: %s\tPower Level: %s\tMana: %s", health, powerLevel, mana);
+        System.out.printf("Health: %s\tPower Level: %s\tMana: %s\n", health, powerLevel, mana);
     }
 
     public void addMana() {
@@ -48,6 +48,40 @@ public class DiceMage extends Player {
         }
 
         mana += netGain;
-        System.out.println(color + " mage " + name + " pulled " + netGain + " mana, they now have " + mana + " total mana.");
+        if (netGain < 2) {
+            System.out.println(name + " feels a tiny mana pulse.");
+        } else if (netGain < 5) {
+            System.out.println(name + " feels mana flowing in the air.");
+        } else if (netGain < 9) {
+            System.out.println(name + " feels mana surrounding them.");
+        } else if (netGain >= 10) {
+            System.out.println(name + " feels mana coursing through their veins");
+        }
+        Display.dice(this);
+        System.out.println(name + " pulled " + netGain + " mana, they now have " + mana + " total mana.");
+    }
+
+    public void takeAction(int index) {
+        switch (index) {
+            case 1:
+                addCompanion();
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+            case 4:
+                for (Player mage : Turn.players) {
+                    ((DiceMage) mage).stats();
+                    System.out.println("----------");
+                }
+                break;
+            case 5:
+                break;
+        }
+    }
+
+    public void addCompanion() {
+
     }
 }
