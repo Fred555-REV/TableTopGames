@@ -97,10 +97,8 @@ public class Game {
         mage.stats();
 
 
-        Display.availableActions(mage);
-        int actionIndex = scan.nextInt();
-        scan.nextLine();
-        mage.takeAction(actionIndex);
+
+        mage.takeAction();
 
         Turn.turnPass();
     }

@@ -32,18 +32,39 @@ public class Display {
         System.out.println("Actions");
         int powerUpCost;
         if (mage.dice.size() > 6) {
-            powerUpCost = 4 + (mage.dice.size() - 6);//+companion amount
+            powerUpCost = 4 + (mage.dice.size() - 6 + mage.companionAmount);
         } else {
-            powerUpCost = 4;//+companion amount
+            powerUpCost = 4 + mage.companionAmount;
         }
-        //TODO companion class idk if whole new extends player or extends die?
         if (mage.mana > powerUpCost) {
-            System.out.println("(1) increase power for " + powerUpCost);
+            System.out.println("(1) increase power for " + powerUpCost + " (doesn't end turn.");
         }
-        System.out.println("(2)");
-        System.out.println("(3)");
+        System.out.println("(2) summon a companion for min 6 mana (ends turn)");
+        System.out.println("(3) attack with companions");
         System.out.println("(4) view field (doesn't end turn)");
         System.out.println("(5) end turn");
+    }
+
+    public static void companions(DiceMage mage) {
+        System.out.println("Companions");
+        if (mage.mana >= 6) {
+            System.out.println("common 1d3    \tcost: 6 mana\tindex: 1");
+        }
+        if (mage.mana >= 7) {
+            System.out.println("uncommon 1d4  \tcost: 7 mana\tindex: 2");
+
+        }
+        if (mage.mana >= 8) {
+            System.out.println("rare 1d6      \tcost: 8 mana\tindex: 3");
+
+        }
+        if (mage.mana >= 9) {
+            System.out.println("epic 1d8      \tcost: 9 mana\tindex: 4");
+
+        }
+        if (mage.dice.size() > 10) {
+            System.out.println("legendary 1d20\tcost: 5 die \tindex: 5");
+        }
     }
 
     public static void score(Player player) {

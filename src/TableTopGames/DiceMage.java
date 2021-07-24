@@ -1,15 +1,15 @@
 package TableTopGames;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DiceMage extends Player {
-    int health;
-    int powerLevel;
-    int mana;
-    boolean isAlive;
+    public int health;
+    public int powerLevel;
+    public int mana;
+    public boolean isAlive;
+    public boolean hasSecret;
+    public Map<Integer, Integer> companions = new HashMap<>();
+    public int companionAmount;
 
     public DiceMage(String name, String color) {
         super(name, color);
@@ -17,6 +17,8 @@ public class DiceMage extends Player {
         powerLevel = 6;
         mana = 0;
         isAlive = true;
+        hasSecret = false;
+        companionAmount = 0;
     }
 
     public void stats() {
@@ -61,14 +63,20 @@ public class DiceMage extends Player {
         System.out.println(name + " pulled " + netGain + " mana, they now have " + mana + " total mana.");
     }
 
-    public void takeAction(int index) {
+    public void takeAction() {
+        Scanner scan = new Scanner(System.in);
+        Display.availableActions(this);
+        int index = scan.nextInt();
+        scan.nextLine();
         switch (index) {
             case 1:
-                addCompanion();
+                powerUP();
                 break;
             case 2:
+                addCompanion();
                 break;
             case 3:
+                attackWithCompanion();
                 break;
             case 4:
                 for (Player mage : Turn.players) {
@@ -81,7 +89,115 @@ public class DiceMage extends Player {
         }
     }
 
+    public void powerUP() {
+        int powerUpCost;
+        if (dice.size() > 6) {
+            powerUpCost = 4 + (dice.size() - 6);//+companion amount
+        } else {
+            powerUpCost = 4;//+companion amount
+        }
+        mana -= powerUpCost;
+        addDice(1);
+        powerLevel = dice.size();
+        stats();
+        takeAction();
+    }
+
     public void addCompanion() {
+        Scanner scan = new Scanner(System.in);
+        Display.companions(this);
+        int secret = 0;
+        if (!hasSecret) {
+
+            if (dice.size() > 7) {
+                secret = (int) Math.floor(Math.random() * 100) + 1;
+            } else {
+                secret = (int) Math.floor(Math.random() * 400) + 1;
+            }
+
+            switch (secret) {
+                case 25:
+                    System.out.println("Secret 1d4      \tcost: 5 mana\tindex: 0");
+                    break;
+                case 50:
+                    System.out.println("Secret 1d6      \tcost: 6 mana\tindex: 0");
+                    break;
+                case 75:
+                    System.out.println("Secret 1d8      \tcost: 1 die \tindex: 0");
+                    break;
+                case 100:
+                    System.out.println("Secret 1d12     \tcost: 3 die \tindex: 0");
+                    break;
+            }
+
+        }
+
+        System.out.println("Choose companion");
+        int index = scan.nextInt();
+        scan.nextLine();
+        int companionStrength = 0;
+        switch (index) {
+            case 0:
+                switch (secret) {
+                    case 25:
+                        companionStrength = 4;
+                        mana -= 5;
+                        break;
+                    case 50:
+                        companionStrength = 6;
+                        mana -= 6;
+                        break;
+                    case 75:
+                        companionStrength = 8;
+                        dice.remove(0);
+                        break;
+                    case 100:
+                        companionStrength = 12;
+                        for (int i = 0; i < 3; i++) {
+                            dice.remove(0);
+                        }
+                        break;
+                }
+                hasSecret = true;
+                break;
+            case 1:
+                companionStrength = 3;
+                mana -= 6;
+                break;
+            case 2:
+                companionStrength = 4;
+                mana -= 7;
+                break;
+            case 3:
+                companionStrength = 6;
+                mana -= 8;
+                break;
+            case 4:
+                companionStrength = 8;
+                mana -= 9;
+                break;
+            case 5:
+                companionStrength = 20;
+                for (int i = 0; i < 5; i++) {
+                    dice.remove(0);
+                }
+                break;
+        }
+
+
+        if (companions.containsKey(companionStrength)) {
+            int value = companions.get(companionStrength);
+            value++;
+            companions.put(companionStrength, value);
+            companionAmount++;
+        } else {
+            companions.put(companionStrength, 1);
+            companionAmount++;
+        }
+
+    }
+
+    public void attackWithCompanion() {
 
     }
 }
