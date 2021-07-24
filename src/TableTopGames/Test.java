@@ -15,7 +15,7 @@ public class Test {
 //        Score.addYahtzee(player1);
 //        Display.score(player1);
         DiceMage mage = new DiceMage("fred", "c");
-        mage.getDice(3, 3);
+        mage.addDice(3, 3);
         System.out.println(mage.dice);
     }
 }

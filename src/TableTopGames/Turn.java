@@ -2,7 +2,6 @@ package TableTopGames;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.MissingFormatArgumentException;
 import java.util.Scanner;
 
 public class Turn {
@@ -51,7 +50,7 @@ public class Turn {
 
             Player player = new Player(name, color);
             Turn.addPlayer(player);
-            player.getDice(diceAmount, numOfSides);
+            player.addDice(diceAmount, numOfSides);
         }
     }
 
@@ -73,7 +72,7 @@ public class Turn {
 
             YahtzeePlayer player = new YahtzeePlayer(name, color, scoreAmount);
             Turn.addPlayer(player);
-            player.getDice(diceAmount, numOfSides);
+            player.addDice(diceAmount, numOfSides);
         }
     }
 

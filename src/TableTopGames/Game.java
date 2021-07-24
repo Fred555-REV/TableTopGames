@@ -62,6 +62,9 @@ public class Game {
             run();
         }
     }
+    public static void runDiceMage(){
+        System.out.println("Welcome to Dice Mage");
+    }
 
 
     public static void playYahtzee(YahtzeePlayer player) {
@@ -115,7 +118,7 @@ public class Game {
             System.out.println("How many dice do you want to play Higher or Lower with?");
             int diceAmount = scan.nextInt();
             scan.nextLine();
-            player.getDice(diceAmount, 6);
+            player.addDice(diceAmount, 6);
         } else {
             System.out.println("Do you want to change dice amount? y/n");
             String change = scan.next();
@@ -123,7 +126,7 @@ public class Game {
                 System.out.println("How many dice do you want to play Higher or Lower with?");
                 int diceAmount = scan.nextInt();
                 scan.nextLine();
-                player.getDice(diceAmount, 6);
+                player.addDice(diceAmount, 6);
             }
             System.out.println("The values go from " + player.dice.size() + " to " + (player.dice.size() * 6));
             boolean didLose = false;

@@ -1,90 +1,70 @@
 package TableTopGames;
 
-import java.util.Scanner;
+public class DisplayYahtzee {
+    public static void possibleYahtzeeScores(Player player) {
 
-public class YahtzeeScore {
-    public static void addYahtzee(YahtzeePlayer player) {
-        Scanner scan = new Scanner(System.in);
-        DisplayYahtzee.possibleYahtzeeScores(player);
-        System.out.println("When done looking at possible scores enter \"done\".");
-        String nice = scan.next().trim();
-        if (nice.equalsIgnoreCase("nice")) {
-            System.out.println(nice);
-        }
-        System.out.println("These are available scores to add or erase");
-        DisplayYahtzee.availableYahtzeeScores(player);
-        System.out.println("Which score would you like to add? enter index");
-        int index = scan.nextInt();
-        scan.nextLine();
-        if (player.scoreSheet[index] != 5) {
-            player.scoreSheet[index] = 5;
-            switch (index) {
-                case 0:
-                    YahtzeeScore.ones(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 1:
-                    YahtzeeScore.twos(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 2:
-                    YahtzeeScore.threes(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 3:
-                    YahtzeeScore.fours(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 4:
-                    YahtzeeScore.fives(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 5:
-                    YahtzeeScore.sixes(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 6:
-                    YahtzeeScore.threeOAK(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 7:
-                    YahtzeeScore.fourOAK(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 8:
-                    YahtzeeScore.fullHouse(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 9:
-                    YahtzeeScore.smStraight(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 10:
-                    YahtzeeScore.lgStraight(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 11:
-                    YahtzeeScore.fiveOAK(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-                case 12:
-                    YahtzeeScore.chance(player);
-                    YahtzeeScore.bonusYahtzee(player);
-                    break;
-            }
-        } else {
-            YahtzeeScore.addYahtzee(player);
-        }
-//        scan.close();
+        ones(player);
+        twos(player);
+        threes(player);
+        fours(player);
+        fives(player);
+        sixes(player);
+        //^ ^ ^ ^ upper ^ ^ ^ ^
+        //v v v v lower v v v v
+        threeOAK(player);   // of a kind
+        fourOAK(player);    // of a kind
+        fullHouse(player);
+        smStraight(player);
+        lgStraight(player);
+        fiveOAK(player);    // of a kind
+        chance(player);
     }
 
-    public static void bonusYahtzee(YahtzeePlayer player) {
-        if (player.bonus >= 63 && player.scoreSheet[13] != 5) {
-            player.scoreSheet[13] = 5;
-            player.score += 35;
-            System.out.println("You got the bonus " + player.bonus + "/" + 63 + " +35 points");
-        } else if (player.scoreSheet[13] != 5) {
-            System.out.println("Bonus: " + player.bonus + "/" + 63);
+    public static void availableYahtzeeScores(YahtzeePlayer player) {
+        for (int i = 0; i < player.scoreSheet.length; i++) {
+            if (player.scoreSheet[i] != 5) {
+                switch (i) {
+                    case 0:
+                        System.out.println("ones index = 0");
+                        break;
+                    case 1:
+                        System.out.println("twos index = 1");
+                        break;
+                    case 2:
+                        System.out.println("threes index = 2");
+                        break;
+                    case 3:
+                        System.out.println("fours index = 3");
+                        break;
+                    case 4:
+                        System.out.println("fives index = 4");
+                        break;
+                    case 5:
+                        System.out.println("sixes index = 5");
+                        break;
+                    case 6:
+                        System.out.println("three of a kind index = 6");
+                        break;
+                    case 7:
+                        System.out.println("four of a kind index = 7");
+                        break;
+                    case 8:
+                        System.out.println("full house index = 8");
+                        break;
+                    case 9:
+                        System.out.println("small straight index = 9");
+                        break;
+                    case 10:
+                        System.out.println("large straight index = 10");
+                        break;
+                    case 11:
+                        System.out.println("Yahtzee! index = 11");
+                        break;
+                    case 12:
+                        System.out.println("chance index = 12");
+                        break;
+                }
+            }
         }
     }
 
@@ -97,8 +77,6 @@ public class YahtzeeScore {
         }
         if (total != 0) {
             System.out.println("Ones = " + total);
-            player.score += total;
-            player.bonus += total;
         }
     }
 
@@ -111,8 +89,6 @@ public class YahtzeeScore {
         }
         if (total != 0) {
             System.out.println("Twos = " + total);
-            player.score += total;
-            player.bonus += total;
         }
     }
 
@@ -125,8 +101,6 @@ public class YahtzeeScore {
         }
         if (total != 0) {
             System.out.println("Threes = " + total);
-            player.score += total;
-            player.bonus += total;
         }
     }
 
@@ -139,8 +113,6 @@ public class YahtzeeScore {
         }
         if (total != 0) {
             System.out.println("Fours = " + total);
-            player.score += total;
-            player.bonus += total;
         }
     }
 
@@ -153,8 +125,6 @@ public class YahtzeeScore {
         }
         if (total != 0) {
             System.out.println("Fives = " + total);
-            player.score += total;
-            player.bonus += total;
         }
     }
 
@@ -167,8 +137,6 @@ public class YahtzeeScore {
         }
         if (total != 0) {
             System.out.println("Sixes = " + total);
-            player.score += total;
-            player.bonus += total;
         }
     }
 
@@ -185,7 +153,6 @@ public class YahtzeeScore {
 //            System.out.println("count " + count);
             if (count == 3) {
                 System.out.println("Three of a Kind = " + total);
-                player.score += total;
                 break;
             }
 //            System.out.println("i " + i);
@@ -206,7 +173,6 @@ public class YahtzeeScore {
 //            System.out.println("count " + count);
             if (count == 4) {
                 System.out.println("Four of a Kind = " + total);
-                player.score += total;
                 break;
             }
 //            System.out.println("i " + i);
@@ -235,10 +201,10 @@ public class YahtzeeScore {
                     if (player.dice.get(k).value != threeOAK && player.dice.get(k).value == player.dice.get(l).value) {
                         count2++;
                     }
+
                 }
                 if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
                     System.out.println("Full House = 25");
-                    player.score += 25;
                     isDone = true;
                 }
                 if (isDone) {
@@ -267,14 +233,15 @@ public class YahtzeeScore {
                 if (player.dice.get(i).value == player.dice.get(j).value + 1) {
                     count++;
                 }
+//                System.out.println("dupe " + duplicateCount + " count " + count);
             }
         }
         if (count == 3 && duplicateCount == 0) {
             System.out.println("Small Straight = 30");
-            player.score += 30;
         } else if (count == 4 && duplicateCount == 2) {
             System.out.println("Small Straight = 30");
-            player.score += 30;
+        } else if (count == 5 && duplicateCount == 2) {
+            System.out.println("Small Straight = 30");
         }
     }
 
@@ -294,7 +261,6 @@ public class YahtzeeScore {
         }
         if (count == 4 && duplicateCount == 0) {
             System.out.println("Large Straight = 40");
-            player.score += 40;
         }
     }
 
@@ -309,7 +275,6 @@ public class YahtzeeScore {
 //            System.out.println("count " + count);
             if (count == 5) {
                 System.out.println("Yahtzee! = 50");
-                player.score += 50;
                 break;
             }
 //            System.out.println("i " + i);
@@ -322,7 +287,6 @@ public class YahtzeeScore {
         for (int i = 0; i < player.dice.size(); i++) {
             total += player.dice.get(i).value;
         }
-        System.out.println("Chance = " + total);
-        player.score += total;
+        System.out.println("chance = " + total);
     }
 }

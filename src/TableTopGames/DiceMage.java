@@ -7,5 +7,4 @@ public class DiceMage extends Player {
     public DiceMage(String name, String color) {
         super(name, color);
     }
-
 }

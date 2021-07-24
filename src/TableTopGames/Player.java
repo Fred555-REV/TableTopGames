@@ -25,13 +25,13 @@ public class Player {
         return total;
     }
 
-    public void getDice(int diceAmount) {
+    public void addDice(int diceAmount) {
         for (int i = 0; i < diceAmount; i++) {
             dice.add(new Die());
         }
     }
 
-    public void getDice(int diceAmount, int numOfSides) {
+    public void addDice(int diceAmount, int numOfSides) {
         for (int i = 0; i < diceAmount; i++) {
             dice.add(new Die(numOfSides));
         }
