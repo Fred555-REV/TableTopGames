@@ -44,9 +44,7 @@ public class Game {
         if (Turn.players.size() > 1) {
             Display.winner();
         }
-        if (isRunning) {
-            run();
-        }
+        run();
     }
 
     public static void runHighLow() {
@@ -58,14 +56,28 @@ public class Game {
                 break;
             }
         }
-        if (isRunning) {
-            run();
-        }
-    }
-    public static void runDiceMage(){
-        System.out.println("Welcome to Dice Mage");
+        run();
     }
 
+    public static void runDiceMage() {
+        System.out.println("Welcome to Dice Mage");
+        Turn.createMages(6, 6);
+        boolean isRunning = true;
+        while (isRunning) {
+            playDiceMage((DiceMage) Turn.getActivePlayer());
+            for (Player player : Turn.players) {
+                if (((DiceMage) player).health <= 0) {
+                    isRunning = false;
+                }
+            }
+        }
+        Display.survivor();
+        run();
+    }
+
+    public static void playDiceMage(DiceMage player) {
+
+    }
 
     public static void playYahtzee(YahtzeePlayer player) {
         Scanner scan = new Scanner(System.in);
@@ -187,7 +199,4 @@ public class Game {
         }
     }
 
-    public static void playDiceMage(Player player) {
-
-    }
 }

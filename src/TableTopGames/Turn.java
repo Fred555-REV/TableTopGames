@@ -53,6 +53,27 @@ public class Turn {
             player.addDice(diceAmount, numOfSides);
         }
     }
+    public static void createMages(int diceAmount, int numOfSides) {
+        Scanner scan = new Scanner(System.in);
+//        System.out.println("How many players will there be?");
+//        int playerNum;
+//        do {
+//            playerNum = scan.nextInt();
+//            scan.nextLine();
+//        } while (playerNum < MIN_PLAYERS || playerNum > MAX_PLAYERS);
+
+        while (players.size() < 2) {
+
+            System.out.println("Enter name");
+            String name = scan.next().trim();
+            System.out.println("Enter color");
+            String color = scan.next().trim();
+
+            DiceMage player = new DiceMage(name, color);
+            Turn.addPlayer(player);
+            player.addDice(diceAmount, numOfSides);
+        }
+    }
 
     public static void createYahtzeePlayers(int scoreAmount, int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);

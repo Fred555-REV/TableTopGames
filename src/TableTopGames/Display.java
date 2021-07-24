@@ -63,4 +63,15 @@ public class Display {
 
     }
 
+    public static void survivor() {
+        DiceMage survivor;
+        if (((DiceMage) Turn.players.get(0)).health <= 0) {
+            survivor = (DiceMage) Turn.players.get(1);
+            System.out.println(survivor.color + " mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
+        } else {
+            survivor = (DiceMage) Turn.players.get(0);
+            System.out.println(survivor.color + " mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
+        }
+    }
+
 }
