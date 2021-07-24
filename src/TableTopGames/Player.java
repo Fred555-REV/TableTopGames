@@ -8,21 +8,12 @@ public class Player {
     String color;
     int score;
     int bonus;
-    int[] scoreSheet;
     List<Die> dice;
 
     public Player(String name, String color) {
         this.name = name;
         this.color = color;
         this.score = 0;
-        this.dice = new ArrayList<>();
-    }
-
-    public Player(String name, String color, int scoreAmount) {
-        this.name = name;
-        this.color = color;
-        this.score = 0;
-        this.scoreSheet = new int[scoreAmount];
         this.dice = new ArrayList<>();
     }
 

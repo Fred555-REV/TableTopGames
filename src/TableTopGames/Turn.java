@@ -33,7 +33,7 @@ public class Turn {
         }
     }
 
-    public static void createPlayers(int scoreAmount, int diceAmount, int numOfSides) {
+    public static void createPlayers(int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);
         System.out.println("How many players will there be?");
         int playerNum;
@@ -49,7 +49,29 @@ public class Turn {
             System.out.println("Enter color");
             String color = scan.next().trim();
 
-            Player player = new Player(name, color, scoreAmount);
+            Player player = new Player(name, color);
+            Turn.addPlayer(player);
+            player.getDice(diceAmount, numOfSides);
+        }
+    }
+
+    public static void createYahtzeePlayers(int scoreAmount, int diceAmount, int numOfSides) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("How many players will there be?");
+        int playerNum;
+        do {
+            playerNum = scan.nextInt();
+            scan.nextLine();
+        } while (playerNum < MIN_PLAYERS || playerNum > MAX_PLAYERS);
+
+        while (players.size() < playerNum) {
+
+            System.out.println("Enter name");
+            String name = scan.next().trim();
+            System.out.println("Enter color");
+            String color = scan.next().trim();
+
+            YahtzeePlayer player = new YahtzeePlayer(name, color, scoreAmount);
             Turn.addPlayer(player);
             player.getDice(diceAmount, numOfSides);
         }

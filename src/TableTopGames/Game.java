@@ -1,6 +1,5 @@
 package TableTopGames;
 
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,6 +20,8 @@ public class Game {
             case 2:
                 runHighLow();
                 break;
+            case 3:
+                break;
         }
         if (index < 0 || index > 2) {
             System.out.println("Error: " + index + " not a game");
@@ -30,12 +31,12 @@ public class Game {
 
     public static void runYahtzee() {
         System.out.println("Welcome to yahtzee.");
-        Turn.createPlayers(14, 5, 6);
+        Turn.createYahtzeePlayers(14, 5, 6);
         Turn.setTurns(13);
         while (Turn.turnMax != 0) {
             Turn.displayTurn();
             Turn.displayTurnsLeft();
-            playYahtzee(Turn.getActivePlayer());
+            playYahtzee((YahtzeePlayer) Turn.getActivePlayer());
             if (!isRunning) {
                 break;
             }
@@ -63,7 +64,7 @@ public class Game {
     }
 
 
-    public static void playYahtzee(Player player) {
+    public static void playYahtzee(YahtzeePlayer player) {
         Scanner scan = new Scanner(System.in);
         System.out.println("ready?");
         String ready = scan.nextLine();
@@ -98,7 +99,7 @@ public class Game {
             if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
                 Display.dice(player);
-                Score.add(player);
+                Score.addYahtzee(player);
                 Display.score(player);
             } else {
                 Display.dice(player);

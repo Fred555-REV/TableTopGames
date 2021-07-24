@@ -4,7 +4,7 @@ public class Test {
     public static void main(String[] args) {
 
         System.out.println("player 1\n");
-        Player player1 = new Player("player 1", "red", 14);
+        YahtzeePlayer player1 = new YahtzeePlayer("player 1", "red", 14);
         player1.getDice(5, 6);
         player1.dice.get(0).value = 5; // was displaying full house 3 times as possible score
         player1.dice.get(1).value = 3;
@@ -12,7 +12,7 @@ public class Test {
         player1.dice.get(3).value = 5;
         player1.dice.get(4).value = 3;
         Display.dice(player1);
-        Score.add(player1);
+        Score.addYahtzee(player1);
         Display.score(player1);
 
 //        player1.dice[0].number = 1;

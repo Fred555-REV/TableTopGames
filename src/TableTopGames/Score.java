@@ -3,7 +3,7 @@ package TableTopGames;
 import java.util.Scanner;
 
 public class Score {
-    public static void add(Player player) {
+    public static void addYahtzee(YahtzeePlayer player) {
         Scanner scan = new Scanner(System.in);
         Display.possibleYahtzeeScores(player);
         System.out.println("When done looking at possible scores enter \"done\".");
@@ -21,64 +21,64 @@ public class Score {
             switch (index) {
                 case 0:
                     Score.ones(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 1:
                     Score.twos(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 2:
                     Score.threes(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 3:
                     Score.fours(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 4:
                     Score.fives(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 5:
                     Score.sixes(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 6:
                     Score.threeOAK(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 7:
                     Score.fourOAK(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 8:
                     Score.fullHouse(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 9:
                     Score.smStraight(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 10:
                     Score.lgStraight(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 11:
                     Score.fiveOAK(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
                 case 12:
                     Score.chance(player);
-                    Score.bonus(player);
+                    Score.bonusYahtzee(player);
                     break;
             }
         } else {
-            Score.add(player);
+            Score.addYahtzee(player);
         }
 //        scan.close();
     }
 
-    public static void bonus(Player player) {
+    public static void bonusYahtzee(YahtzeePlayer player) {
         if (player.bonus >= 63 && player.scoreSheet[13] != 5) {
             player.scoreSheet[13] = 5;
             player.score += 35;
