@@ -1,6 +1,5 @@
 package TableTopGames;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -16,7 +15,7 @@ public class Game {
         int index = scan.nextInt();
         switch (index) {
             case 1:
-                runYahtzee();
+                runYachtsea();
                 break;
             case 2:
                 runHighLow();
@@ -31,14 +30,14 @@ public class Game {
         }
     }
 
-    public static void runYahtzee() {
-        System.out.println("Welcome to yahtzee.");
-        Turn.createYahtzeePlayers(14, 5, 6);
+    public static void runYachtsea() {
+        System.out.println("Welcome to Yachtsea.");
+        Turn.createYachtseaPlayers(14, 5, 6);
         Turn.setTurns(13);
         while (Turn.turnMax != 0) {
             Turn.displayTurn();
             Turn.displayTurnsLeft();
-            playYahtzee((YahtzeePlayer) Turn.getActivePlayer());
+            playYachtsea((YachtseaPlayer) Turn.getActivePlayer());
             if (!isRunning) {
                 break;
             }
@@ -106,7 +105,7 @@ public class Game {
         Turn.turnPass();
     }
 
-    public static void playYahtzee(YahtzeePlayer player) {
+    public static void playYachtsea(YachtseaPlayer player) {
         Scanner scan = new Scanner(System.in);
         System.out.println("ready?");
         String ready = scan.nextLine();
@@ -141,7 +140,7 @@ public class Game {
             if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
                 Display.dice(player);
-                YahtzeeScore.addYahtzee(player);
+                YachtseaScore.addYachtsea(player);
                 Display.score(player);
             } else {
                 Display.dice(player);

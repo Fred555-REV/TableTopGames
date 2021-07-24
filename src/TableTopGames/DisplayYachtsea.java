@@ -1,7 +1,7 @@
 package TableTopGames;
 
-public class DisplayYahtzee {
-    public static void possibleYahtzeeScores(Player player) {
+public class DisplayYachtsea {
+    public static void possibleYachtseaScores(Player player) {
 
         ones(player);
         twos(player);
@@ -20,7 +20,7 @@ public class DisplayYahtzee {
         chance(player);
     }
 
-    public static void availableYahtzeeScores(YahtzeePlayer player) {
+    public static void availableYachtseaScores(YachtseaPlayer player) {
         for (int i = 0; i < player.scoreSheet.length; i++) {
             if (player.scoreSheet[i] != 5) {
                 switch (i) {
@@ -274,7 +274,7 @@ public class DisplayYahtzee {
             }
 //            System.out.println("count " + count);
             if (count == 5) {
-                System.out.println("Yahtzee! = 50");
+                System.out.println("Yachtsea! = 50");
                 break;
             }
 //            System.out.println("i " + i);

@@ -2,17 +2,17 @@ package TableTopGames;
 
 import java.util.Scanner;
 
-public class YahtzeeScore {
-    public static void addYahtzee(YahtzeePlayer player) {
+public class YachtseaScore {
+    public static void addYachtsea(YachtseaPlayer player) {
         Scanner scan = new Scanner(System.in);
-        DisplayYahtzee.possibleYahtzeeScores(player);
+        DisplayYachtsea.possibleYachtseaScores(player);
         System.out.println("When done looking at possible scores enter \"done\".");
         String nice = scan.next().trim();
         if (nice.equalsIgnoreCase("nice")) {
             System.out.println(nice);
         }
         System.out.println("These are available scores to add or erase");
-        DisplayYahtzee.availableYahtzeeScores(player);
+        DisplayYachtsea.availableYachtseaScores(player);
         System.out.println("Which score would you like to add? enter index");
         int index = scan.nextInt();
         scan.nextLine();
@@ -20,65 +20,65 @@ public class YahtzeeScore {
             player.scoreSheet[index] = 5;
             switch (index) {
                 case 0:
-                    YahtzeeScore.ones(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.ones(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 1:
-                    YahtzeeScore.twos(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.twos(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 2:
-                    YahtzeeScore.threes(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.threes(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 3:
-                    YahtzeeScore.fours(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.fours(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 4:
-                    YahtzeeScore.fives(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.fives(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 5:
-                    YahtzeeScore.sixes(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.sixes(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 6:
-                    YahtzeeScore.threeOAK(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.threeOAK(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 7:
-                    YahtzeeScore.fourOAK(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.fourOAK(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 8:
-                    YahtzeeScore.fullHouse(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.fullHouse(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 9:
-                    YahtzeeScore.smStraight(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.smStraight(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 10:
-                    YahtzeeScore.lgStraight(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.lgStraight(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 11:
-                    YahtzeeScore.fiveOAK(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.fiveOAK(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
                 case 12:
-                    YahtzeeScore.chance(player);
-                    YahtzeeScore.bonusYahtzee(player);
+                    YachtseaScore.chance(player);
+                    YachtseaScore.bonusYachtsea(player);
                     break;
             }
         } else {
-            YahtzeeScore.addYahtzee(player);
+            YachtseaScore.addYachtsea(player);
         }
 //        scan.close();
     }
 
-    public static void bonusYahtzee(YahtzeePlayer player) {
+    public static void bonusYachtsea(YachtseaPlayer player) {
         if (player.bonus >= 63 && player.scoreSheet[13] != 5) {
             player.scoreSheet[13] = 5;
             player.score += 35;
@@ -308,7 +308,7 @@ public class YahtzeeScore {
             }
 //            System.out.println("count " + count);
             if (count == 5) {
-                System.out.println("Yahtzee! = 50");
+                System.out.println("Yachtsea! = 50");
                 player.score += 50;
                 break;
             }

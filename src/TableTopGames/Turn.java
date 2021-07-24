@@ -75,7 +75,7 @@ public class Turn {
         }
     }
 
-    public static void createYahtzeePlayers(int scoreAmount, int diceAmount, int numOfSides) {
+    public static void createYachtseaPlayers(int scoreAmount, int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);
         System.out.println("How many players will there be?");
         int playerNum;
@@ -91,7 +91,7 @@ public class Turn {
             System.out.println("Enter color");
             String color = scan.next().trim();
 
-            YahtzeePlayer player = new YahtzeePlayer(name, color, scoreAmount);
+            YachtseaPlayer player = new YachtseaPlayer(name, color, scoreAmount);
             Turn.addPlayer(player);
             player.addDice(diceAmount, numOfSides);
         }
