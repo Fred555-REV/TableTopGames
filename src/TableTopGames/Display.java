@@ -3,6 +3,7 @@ package TableTopGames;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.DoubleConsumer;
 
 public class Display {
     public static void dice(Player player) {
@@ -67,11 +68,16 @@ public class Display {
         DiceMage survivor;
         if (((DiceMage) Turn.players.get(0)).health <= 0) {
             survivor = (DiceMage) Turn.players.get(1);
-            System.out.println(survivor.color + " mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
+            System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
         } else {
             survivor = (DiceMage) Turn.players.get(0);
-            System.out.println(survivor.color + " mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
+            System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
         }
+    }
+
+    public static void turnDiceMage() {
+        DiceMage mage = (DiceMage) Turn.getActivePlayer();
+        System.out.println(mage.color + " Mage " + mage.name + "'s turn");
     }
 
 }

@@ -14,8 +14,20 @@ public class Test {
 //        Display.dice(player1);
 //        Score.addYahtzee(player1);
 //        Display.score(player1);
-        DiceMage mage = new DiceMage("fred", "c");
-        mage.addDice(3, 3);
-        System.out.println(mage.dice);
+        DiceMage mage = new DiceMage("Fred", "Red");
+        mage.addDice(6, 6);
+        System.out.println(mage.color + " Mage " + mage.name + "'s turn");
+
+//        mage.dice.get(0).value = 5;
+//        mage.dice.get(1).value = 4;
+//        mage.dice.get(2).value = 4;
+//        mage.dice.get(3).value = 3;
+//        mage.dice.get(4).value = 4;
+//        mage.dice.get(5).value = 6;
+
+        mage.rollAll();
+        Display.dice(mage);
+        mage.addMana();
+        mage.stats();
     }
 }

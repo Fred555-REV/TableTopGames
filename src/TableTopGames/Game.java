@@ -1,5 +1,6 @@
 package TableTopGames;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -60,22 +61,40 @@ public class Game {
     }
 
     public static void runDiceMage() {
+        isRunning = true;
         System.out.println("Welcome to Dice Mage");
         Turn.createMages(6, 6);
-        boolean isRunning = true;
         while (isRunning) {
             playDiceMage((DiceMage) Turn.getActivePlayer());
             for (Player player : Turn.players) {
                 if (((DiceMage) player).health <= 0) {
                     isRunning = false;
+                    break;
                 }
+            }
+            if (!isRunning) {
+                break;
             }
         }
         Display.survivor();
         run();
     }
 
-    public static void playDiceMage(DiceMage player) {
+    public static void playDiceMage(DiceMage mage) {
+        Scanner scan = new Scanner(System.in);
+
+        Display.turnDiceMage();
+
+        System.out.println("ready?");
+        String ready = scan.nextLine();
+        if (ready.equals("EXIT")) {
+            System.out.println("ok");
+            isRunning = false;
+        }
+
+        mage.rollAll();
+        mage.addMana();
+        mage.stats();
 
     }
 
