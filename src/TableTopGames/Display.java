@@ -82,7 +82,7 @@ public class Display {
         Display.chance(player);
     }
 
-    public static void availableYahtzeeScores(Player player) {
+    public static void availableYahtzeeScores(YahtzeePlayer player) {
         for (int i = 0; i < player.scoreSheet.length; i++) {
             if (player.scoreSheet[i] != 5) {
                 switch (i) {

@@ -99,7 +99,7 @@ public class Game {
             if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
                 Display.dice(player);
-                Score.addYahtzee(player);
+                YahtzeeScore.addYahtzee(player);
                 Display.score(player);
             } else {
                 Display.dice(player);

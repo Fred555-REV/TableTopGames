@@ -2,7 +2,7 @@ package TableTopGames;
 
 import java.util.Scanner;
 
-public class Score {
+public class YahtzeeScore {
     public static void addYahtzee(YahtzeePlayer player) {
         Scanner scan = new Scanner(System.in);
         Display.possibleYahtzeeScores(player);
@@ -20,60 +20,60 @@ public class Score {
             player.scoreSheet[index] = 5;
             switch (index) {
                 case 0:
-                    Score.ones(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.ones(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 1:
-                    Score.twos(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.twos(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 2:
-                    Score.threes(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.threes(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 3:
-                    Score.fours(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.fours(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 4:
-                    Score.fives(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.fives(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 5:
-                    Score.sixes(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.sixes(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 6:
-                    Score.threeOAK(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.threeOAK(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 7:
-                    Score.fourOAK(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.fourOAK(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 8:
-                    Score.fullHouse(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.fullHouse(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 9:
-                    Score.smStraight(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.smStraight(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 10:
-                    Score.lgStraight(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.lgStraight(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 11:
-                    Score.fiveOAK(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.fiveOAK(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
                 case 12:
-                    Score.chance(player);
-                    Score.bonusYahtzee(player);
+                    YahtzeeScore.chance(player);
+                    YahtzeeScore.bonusYahtzee(player);
                     break;
             }
         } else {
-            Score.addYahtzee(player);
+            YahtzeeScore.addYahtzee(player);
         }
 //        scan.close();
     }
