@@ -18,24 +18,29 @@ public class Test {
 //        Score.addYahtzee(player1);
 //        Display.score(player1);
         DiceMage mage = new DiceMage("Fred", "Red");
-        mage.addDice(20);
-        mage.powerLevel = 20;
+        mage.addDice(6);
         System.out.println(mage.color + " Mage " + mage.name + "'s turn");
-        Display.dice(mage);
 //        mage.dice.get(0).value = 5;
 //        mage.dice.get(1).value = 4;
 //        mage.dice.get(2).value = 4;
 //        mage.dice.get(3).value = 3;
 //        mage.dice.get(4).value = 4;
 //        mage.dice.get(5).value = 6;
-
-        mage.rollAll();
-        Display.dice(mage);
-        mage.addMana();
-        mage.mana += 100;
-        mage.stats();
-        while (!mage.hasSecret) {
-            mage.addCompanion();
+        while (mage.powerLevel < 25) {
+            mage.rollAll();
+            mage.addMana();
+            mage.stats();
+            mage.takeAction();
         }
+
+
+//        mage.rollAll();
+//        Display.dice(mage.dice);
+//        mage.addMana();
+//        mage.mana += 100;
+//        mage.stats();
+//        while (!mage.hasSecret) {
+//            mage.addCompanion();
+//        }
     }
 }

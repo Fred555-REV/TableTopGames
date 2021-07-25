@@ -10,6 +10,7 @@ public class DiceMage extends Player {
     public boolean hasSecret;
     public Map<Integer, Integer> companions = new HashMap<>();
     public int companionAmount;
+    public List<Die> companionList = new ArrayList<>();
 
     public DiceMage(String name, String color) {
         super(name, color);
@@ -24,6 +25,10 @@ public class DiceMage extends Player {
     public void stats() {
         System.out.println(color + " Mage " + name);
         System.out.printf("Health: %s\tPower Level: %s\tMana: %s\n", health, powerLevel, mana);
+    }
+
+    public void addCompanionDice(int companionStrength) {
+        companionList.add(new Die(companionStrength));
     }
 
     public void addMana() {
@@ -59,7 +64,7 @@ public class DiceMage extends Player {
         } else if (netGain >= 10) {
             System.out.println(name + " feels mana coursing through their veins");
         }
-        Display.dice(this);
+        Display.dice(this.dice);
         System.out.println(name + " pulled " + netGain + " mana, they now have " + mana + " total mana.");
     }
 
@@ -79,9 +84,23 @@ public class DiceMage extends Player {
                 attackWithCompanion();
                 break;
             case 4:
-                for (Player mage : Turn.players) {
-                    ((DiceMage) mage).stats();
+                if (Turn.players.size() > 0) {
+                    for (Player player : Turn.players) {
+                        DiceMage mage = (DiceMage) player;
+                        mage.stats();
+                        Display.companions(mage);
+                        System.out.println("----------");
+                    }
+                } else {
+                    stats();
+                    Display.companions(this);
                     System.out.println("----------");
+                }
+                System.out.println("done?");
+                String ready = scan.nextLine();
+                if (ready.equals("EXIT")) {
+                    System.out.println("ok");
+                    Game.isRunning = false;
                 }
                 break;
             case 5:
@@ -105,7 +124,7 @@ public class DiceMage extends Player {
 
     public void addCompanion() {
         Scanner scan = new Scanner(System.in);
-        Display.companions(this);
+        Display.availableCompanions(this);
         int secret = 0;
         if (!hasSecret) {
 
@@ -126,7 +145,7 @@ public class DiceMage extends Player {
                     System.out.println("Secret 1d8      \tcost: 1 die \tindex: 0");
                     break;
                 case 100:
-                    System.out.println("Secret 1d12     \tcost: 3 die \tindex: 0");
+                    System.out.println("Secret 1d20     \tcost: 3 die \tindex: 0");
                     break;
             }
 
@@ -150,11 +169,13 @@ public class DiceMage extends Player {
                     case 75:
                         companionStrength = 8;
                         dice.remove(0);
+                        powerLevel--;
                         break;
                     case 100:
                         companionStrength = 12;
                         for (int i = 0; i < 3; i++) {
                             dice.remove(0);
+                            powerLevel--;
                         }
                         break;
                 }
@@ -180,6 +201,7 @@ public class DiceMage extends Player {
                 companionStrength = 20;
                 for (int i = 0; i < 5; i++) {
                     dice.remove(0);
+                    powerLevel--;
                 }
                 break;
         }
@@ -190,14 +212,19 @@ public class DiceMage extends Player {
             value++;
             companions.put(companionStrength, value);
             companionAmount++;
+            addCompanionDice(companionStrength);
         } else {
             companions.put(companionStrength, 1);
             companionAmount++;
+            addCompanionDice(companionStrength);
         }
-
     }
 
     public void attackWithCompanion() {
-
+        for (Player player : Turn.players) {
+            DiceMage mage = (DiceMage) player;
+            System.out.println(mage.name + "'s companion power");
+            Display.dice(mage.companionList);
+        }
     }
 }

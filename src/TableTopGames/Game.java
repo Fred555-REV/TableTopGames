@@ -97,7 +97,6 @@ public class Game {
         mage.stats();
 
 
-
         mage.takeAction();
 
         Turn.turnPass();
@@ -115,11 +114,11 @@ public class Game {
         for (Die die : player.dice) {
             die.roll();
         }
-        Display.dice(player);
+        Display.dice(player.dice);
         for (int i = 2; i <= 3; i++) {
 
             System.out.println("roll " + i);
-            Display.dice(player);
+            Display.dice(player.dice);
             List<Integer> diceToRoll = new ArrayList<>();
 
             System.out.println("enter die/dice to re-roll. 0 if none, 1-5 (position) followed by spaces");
@@ -137,11 +136,11 @@ public class Game {
             }
             if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
-                Display.dice(player);
+                Display.dice(player.dice);
                 YachtseaScore.addYachtsea(player);
                 Display.score(player);
             } else {
-                Display.dice(player);
+                Display.dice(player.dice);
             }
         }
 //        scan.next();
@@ -173,13 +172,13 @@ public class Game {
                 System.out.println();
                 int total = player.getTotalDiceValue();
                 int newTotal;
-                Display.dice(player);
+                Display.dice(player.dice);
                 System.out.println(total);
                 System.out.println("Higher or lower? enter: h/l");
                 String inputHL = scan.next();
                 player.rollAll();
                 newTotal = player.getTotalDiceValue();
-                Display.dice(player);
+                Display.dice(player.dice);
                 System.out.println(newTotal);
                 boolean isLarger = newTotal > total;
 

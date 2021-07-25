@@ -2,21 +2,24 @@ package TableTopGames;
 
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.function.DoubleConsumer;
 
 public class Display {
-    public static void dice(Player player) {
+    public static void dice(List<Die> list) {
+        Collections.sort(list, Die::compareTo);
         System.out.println();
-        for (int i = 0; i < player.dice.size(); i++) {
+
+        for (int i = 0; i < list.size(); i++) {
             System.out.print("/¯¯¯\\");
         }
         System.out.println();
-        for (int i = 0; i < player.dice.size(); i++) {
-            System.out.print("|" + " " + player.dice.get(i).value + " " + "|");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.print("|" + " " + list.get(i).value + " " + "|");
         }
         System.out.println();
-        for (int i = 0; i < player.dice.size(); i++) {
+        for (int i = 0; i < list.size(); i++) {
             System.out.print("\\___/");
         }
         System.out.println();
@@ -39,13 +42,18 @@ public class Display {
         if (mage.mana > powerUpCost) {
             System.out.println("(1) increase power for " + powerUpCost + " (doesn't end turn.");
         }
-        System.out.println("(2) summon a companion for min 6 mana (ends turn)");
-        System.out.println("(3) attack with companions");
+        if (mage.mana >= 6) {
+            System.out.println("(2) summon a companion for min 6 mana (ends turn)");
+
+        }
+        if (mage.companionList.size() > 0) {
+            System.out.println("(3) attack with companions");
+        }
         System.out.println("(4) view field (doesn't end turn)");
         System.out.println("(5) end turn");
     }
 
-    public static void companions(DiceMage mage) {
+    public static void availableCompanions(DiceMage mage) {
         System.out.println("Companions");
         if (mage.mana >= 6) {
             System.out.println("common 1d3    \tcost: 6 mana\tindex: 1");
@@ -62,9 +70,25 @@ public class Display {
             System.out.println("epic 1d8      \tcost: 9 mana\tindex: 4");
 
         }
-        if (mage.dice.size() > 10) {
+        if (mage.dice.size() >= 10) {
             System.out.println("legendary 1d20\tcost: 5 die \tindex: 5");
         }
+    }
+
+    public static void companions(DiceMage mage) {
+        System.out.println("Den:");
+        //powerlevels 3 4 6 8 20
+        for (int i = 0; i <= 5; i++) {
+            if (mage.companions.containsKey(i) && mage.companions.get(i) > 0) {
+                System.out.printf(" %sd%s", mage.companions.get(i), i);
+            }
+
+        }
+        System.out.println();
+    }
+
+    public static void companionDice(DiceMage mage) {
+
     }
 
     public static void score(Player player) {

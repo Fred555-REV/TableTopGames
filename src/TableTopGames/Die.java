@@ -31,4 +31,13 @@ public class Die {
             }
         }
     }
+
+    public int compareTo(Die compareDie) {
+        int compareage = ((Die) compareDie).value;
+        /* For Ascending order*/
+        return this.value - compareage;
+
+        /* For Descending order do like this */
+        //return compareage-this.studentage;
+    }
 }
