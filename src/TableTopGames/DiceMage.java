@@ -9,7 +9,6 @@ public class DiceMage extends Player {
     public boolean isAlive;
     public boolean hasSecret;
     public Map<Integer, Integer> companions = new HashMap<>();
-    public int companionAmount;
     public List<Die> companionDice = new ArrayList<>();
 
     public DiceMage(String name, String color) {
@@ -19,7 +18,15 @@ public class DiceMage extends Player {
         mana = 0;
         isAlive = true;
         hasSecret = false;
-        companionAmount = 0;
+    }
+
+    public void rollAll() {
+        for (Die die : dice) {
+            die.roll();
+        }
+        for (Die die : companionDice) {
+            die.roll();
+        }
     }
 
     public void stats() {
@@ -102,6 +109,7 @@ public class DiceMage extends Player {
                     System.out.println("ok");
                     Game.isRunning = false;
                 }
+                takeAction();
                 break;
             case 5:
                 break;
@@ -211,11 +219,9 @@ public class DiceMage extends Player {
             int value = companions.get(companionStrength);
             value++;
             companions.put(companionStrength, value);
-            companionAmount++;
             addCompanionDice(companionStrength);
         } else {
             companions.put(companionStrength, 1);
-            companionAmount++;
             addCompanionDice(companionStrength);
         }
     }
@@ -229,7 +235,9 @@ public class DiceMage extends Player {
             if (mage != this) {
                 defender = mage;
             }
-            mage.rollAll();
+            if (mage.companionDice.size() > 0) {
+                mage.rollAll();
+            }
         }
 
         if (defender != null) {
@@ -273,7 +281,22 @@ public class DiceMage extends Player {
                     }
                     companionDice.removeAll(deadAttackers);
                     defender.companionDice.removeAll(deadDefenders);
-
+                    for (int j = 0; j < deadAttackers.size(); j++) {
+                        int strength = deadAttackers.get(i).numOfSides;
+                        if (companions.containsKey(strength)) {
+                            int num = companions.get(deadAttackers.get(i).numOfSides);
+                            num--;
+                            companions.put(strength, num);
+                        }
+                    }
+                    for (int j = 0; j < deadDefenders.size(); j++) {
+                        int strength = deadDefenders.get(i).numOfSides;
+                        if (companions.containsKey(strength)) {
+                            int num = companions.get(deadDefenders.get(i).numOfSides);
+                            num--;
+                            companions.put(strength, num);
+                        }
+                    }
                 }
 
             } else {

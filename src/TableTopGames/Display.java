@@ -34,9 +34,9 @@ public class Display {
         System.out.println("Actions");
         int powerUpCost;
         if (mage.dice.size() > 6) {
-            powerUpCost = 4 + (mage.dice.size() - 6 + mage.companionAmount);
+            powerUpCost = 4 + (mage.dice.size() - 6 + mage.companionDice.size());
         } else {
-            powerUpCost = 4 + mage.companionAmount;
+            powerUpCost = 4 + mage.companionDice.size();
         }
         if (mage.mana > powerUpCost) {
             System.out.println("(1) increase power for " + powerUpCost + " (doesn't end turn.");
@@ -77,7 +77,7 @@ public class Display {
     public static void companions(DiceMage mage) {
         System.out.println("Den:");
         //powerlevels 3 4 6 8 20
-        for (int i = 0; i <= 5; i++) {
+        for (int i = 0; i <= 20; i++) {
             if (mage.companions.containsKey(i) && mage.companions.get(i) > 0) {
                 System.out.printf(" %sd%s", mage.companions.get(i), i);
             }
