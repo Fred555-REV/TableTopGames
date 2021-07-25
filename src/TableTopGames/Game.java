@@ -67,7 +67,8 @@ public class Game {
         while (isRunning) {
             playDiceMage((DiceMage) Turn.getActivePlayer());
             for (Player player : Turn.players) {
-                if (((DiceMage) player).health <= 0) {
+                DiceMage mage = (DiceMage) player;
+                if (mage.health <= 0) {
                     isRunning = false;
                     break;
                 }
@@ -95,8 +96,6 @@ public class Game {
         mage.rollAll();
         mage.addMana();
         mage.stats();
-
-
         mage.takeAction();
 
         Turn.turnPass();
@@ -170,14 +169,14 @@ public class Game {
 
             while (!didLose) {
                 System.out.println();
-                int total = player.getTotalDiceValue();
+                int total = player.getTotalDiceValue(player.dice);
                 int newTotal;
                 Display.dice(player.dice);
                 System.out.println(total);
                 System.out.println("Higher or lower? enter: h/l");
                 String inputHL = scan.next();
                 player.rollAll();
-                newTotal = player.getTotalDiceValue();
+                newTotal = player.getTotalDiceValue(player.dice);
                 Display.dice(player.dice);
                 System.out.println(newTotal);
                 boolean isLarger = newTotal > total;

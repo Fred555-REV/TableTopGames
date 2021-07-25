@@ -10,7 +10,7 @@ public class DiceMage extends Player {
     public boolean hasSecret;
     public Map<Integer, Integer> companions = new HashMap<>();
     public int companionAmount;
-    public List<Die> companionList = new ArrayList<>();
+    public List<Die> companionDice = new ArrayList<>();
 
     public DiceMage(String name, String color) {
         super(name, color);
@@ -28,7 +28,7 @@ public class DiceMage extends Player {
     }
 
     public void addCompanionDice(int companionStrength) {
-        companionList.add(new Die(companionStrength));
+        companionDice.add(new Die(companionStrength));
     }
 
     public void addMana() {
@@ -81,7 +81,7 @@ public class DiceMage extends Player {
                 addCompanion();
                 break;
             case 3:
-                attackWithCompanion();
+                attackWithCompanions();
                 break;
             case 4:
                 if (Turn.players.size() > 0) {
@@ -220,11 +220,76 @@ public class DiceMage extends Player {
         }
     }
 
-    public void attackWithCompanion() {
+    public void attackWithCompanions() {
+        Scanner scan = new Scanner(System.in);
+
+        DiceMage defender = null;
         for (Player player : Turn.players) {
             DiceMage mage = (DiceMage) player;
-            System.out.println(mage.name + "'s companion power");
-            Display.dice(mage.companionList);
+            if (mage != this) {
+                defender = mage;
+            }
+            mage.rollAll();
+        }
+
+        if (defender != null) {
+            System.out.println(color + " Mage " + name + "'s companion strength");
+            Display.dice(companionDice);
+            System.out.println(defender.color + " Mage " + defender.name + "'s companion strength");
+            Display.dice(defender.companionDice);
+
+            //loop through all dice if defender has companionDice
+            if (defender.companionDice.size() > 0) {
+                List<Die> deadAttackers = new ArrayList<>();
+                List<Die> deadDefenders = new ArrayList<>();
+                for (int i = 0; i < companionDice.size(); i++) {
+                    int attack = 0;
+                    int defense = 0;
+                    if (i < defender.companionDice.size()) {
+                        attack = companionDice.get(i).value;
+                        defense = defender.companionDice.get(i).value;
+                    } else {
+                        System.out.printf("No more defending companions %s Mage %s hit.\n", defender.color, defender.name);
+                        defender.health--;
+                        break;
+                    }
+
+                    if (attack > defense) {
+                        System.out.println("Attack stronger, defender dies");
+                        deadDefenders.add(defender.companionDice.get(i));
+                        System.out.println("Enter");
+                        scan.nextLine();
+                    } else if (defense > attack) {
+                        System.out.println("Defense stronger, attacker dies");
+                        deadAttackers.add(companionDice.get(i));
+                        System.out.println("Enter");
+                        scan.nextLine();
+                    } else {
+                        System.out.println("Attack and defense equal, both die.");
+                        deadDefenders.add(defender.companionDice.get(i));
+                        deadAttackers.add(companionDice.get(i));
+                        System.out.println("Enter");
+                        scan.nextLine();
+                    }
+                    companionDice.removeAll(deadAttackers);
+                    defender.companionDice.removeAll(deadDefenders);
+
+                }
+
+            } else {
+                System.out.printf("No defender %s Mage %s hit.\n", defender.color, defender.name);
+                defender.health--;
+            }
         }
     }
 }
+//            int attack;
+//            int defense;
+//            if (attack > defense) {
+//                System.out.println("Attacker Stronger");
+//                for (Die die : companionDice) {
+//
+//                }
+//            } else {
+//                System.out.println("Defender Stronger");
+//            }

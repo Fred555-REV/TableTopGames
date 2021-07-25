@@ -17,9 +17,9 @@ public class Player {
         this.dice = new ArrayList<>();
     }
 
-    public int getTotalDiceValue() {
+    public int getTotalDiceValue(List<Die> list) {
         int total = 0;
-        for (Die die : dice) {
+        for (Die die : list) {
             total += die.value;
         }
         return total;

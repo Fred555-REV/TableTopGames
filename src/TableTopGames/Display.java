@@ -4,7 +4,6 @@ package TableTopGames;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.function.DoubleConsumer;
 
 public class Display {
     public static void dice(List<Die> list) {
@@ -46,7 +45,7 @@ public class Display {
             System.out.println("(2) summon a companion for min 6 mana (ends turn)");
 
         }
-        if (mage.companionList.size() > 0) {
+        if (mage.companionDice.size() > 0) {
             System.out.println("(3) attack with companions");
         }
         System.out.println("(4) view field (doesn't end turn)");
