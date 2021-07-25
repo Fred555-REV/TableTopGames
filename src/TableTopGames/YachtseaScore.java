@@ -3,6 +3,7 @@ package TableTopGames;
 import java.util.Scanner;
 
 public class YachtseaScore {
+
     public static void addYachtsea(YachtseaPlayer player) {
         Scanner scan = new Scanner(System.in);
         DisplayYachtsea.possibleYachtseaScores(player);

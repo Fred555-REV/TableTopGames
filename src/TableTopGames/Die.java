@@ -3,8 +3,8 @@ package TableTopGames;
 import java.util.List;
 
 public class Die {
-    int value;
-    int numOfSides;
+    public int value;
+    public int numOfSides;
 
     public Die() {
         this.numOfSides = 6;

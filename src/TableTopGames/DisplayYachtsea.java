@@ -1,6 +1,7 @@
 package TableTopGames;
 
 public class DisplayYachtsea {
+
     public static void possibleYachtseaScores(Player player) {
 
         ones(player);

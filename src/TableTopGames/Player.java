@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    String name;
-    String color;
-    int score;
-    int bonus;
-    List<Die> dice;
+    public String name;
+    public String color;
+    public int score;
+    public int bonus;
+    public List<Die> dice;
 
     public Player(String name, String color) {
         this.name = name;
