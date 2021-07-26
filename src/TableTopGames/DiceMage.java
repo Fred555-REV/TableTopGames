@@ -82,13 +82,26 @@ public class DiceMage extends Player {
         scan.nextLine();
         switch (index) {
             case 1:
-                powerUP();
+                int powerUpCost;
+                if (dice.size() > 6) {
+                    powerUpCost = 4 + (dice.size() - 6 + companionDice.size());
+                } else {
+                    powerUpCost = 4 + companionDice.size();
+                }
+                if (mana > powerUpCost) {
+                    powerUP();
+                }
+                takeAction();
                 break;
             case 2:
-                addCompanion();
+                if (mana >= 6) {
+                    addCompanion();
+                }
                 break;
             case 3:
-                attackWithCompanions();
+                if (companionDice.size() > 0) {
+                    attackWithCompanions();
+                }
                 break;
             case 4:
                 if (Turn.players.size() > 0) {
@@ -113,6 +126,10 @@ public class DiceMage extends Player {
                 break;
             case 5:
                 break;
+            default:
+                System.out.println("ERR enter number between 1-5");
+                takeAction();
+                break;
         }
     }
 
@@ -127,7 +144,6 @@ public class DiceMage extends Player {
         addDice(1);
         powerLevel = dice.size();
         stats();
-        takeAction();
     }
 
     public void addCompanion() {
@@ -287,10 +303,10 @@ public class DiceMage extends Player {
                     }
                     for (int j = 0; j < deadDefenders.size(); j++) {
                         int strength = deadDefenders.get(i).numOfSides;
-                        if (companions.containsKey(strength)) {
-                            int num = companions.get(deadDefenders.get(i).numOfSides);
+                        if (defender.companions.containsKey(strength)) {
+                            int num = defender.companions.get(deadDefenders.get(i).numOfSides);
                             num--;
-                            companions.put(strength, num);
+                            defender.companions.put(strength, num);
                         }
                     }
                 }
