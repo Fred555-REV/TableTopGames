@@ -265,20 +265,16 @@ public class DiceMage extends Player {
                     if (attack > defense) {
                         System.out.println("Attack stronger, defender dies");
                         deadDefenders.add(defender.companionDice.get(i));
-                        System.out.println("Enter");
-                        scan.nextLine();
                     } else if (defense > attack) {
                         System.out.println("Defense stronger, attacker dies");
                         deadAttackers.add(companionDice.get(i));
-                        System.out.println("Enter");
-                        scan.nextLine();
                     } else {
                         System.out.println("Attack and defense equal, both die.");
                         deadDefenders.add(defender.companionDice.get(i));
                         deadAttackers.add(companionDice.get(i));
-                        System.out.println("Enter");
-                        scan.nextLine();
                     }
+                    System.out.println("Enter");
+                    scan.nextLine();
                     companionDice.removeAll(deadAttackers);
                     defender.companionDice.removeAll(deadDefenders);
                     for (int j = 0; j < deadAttackers.size(); j++) {

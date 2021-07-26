@@ -25,7 +25,7 @@ public class Display {
     }
 
     public static void allGames() {
-        System.out.println("Yahtzee, index: 1");
+        System.out.println("Yachtsea, index: 1");
         System.out.println("HighLow, index: 2");
         System.out.println("DiceMage, index: 3");
     }
