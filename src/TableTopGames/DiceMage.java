@@ -196,7 +196,7 @@ public class DiceMage extends Player {
                         powerLevel--;
                         break;
                     case 100:
-                        companionStrength = 12;
+                        companionStrength = 20;
                         for (int i = 0; i < 3; i++) {
                             dice.remove(0);
                             powerLevel--;
