@@ -160,16 +160,16 @@ public class DiceMage extends Player {
 
             switch (secret) {
                 case 25:
-                    System.out.println("Secret 1d4      \tcost: 5 mana\tindex: 0");
+                    System.out.println("Secret 1d4    \tcost: 5 mana\tindex: 0");
                     break;
                 case 50:
-                    System.out.println("Secret 1d6      \tcost: 6 mana\tindex: 0");
+                    System.out.println("Secret 1d6    \tcost: 6 mana\tindex: 0");
                     break;
                 case 75:
-                    System.out.println("Secret 1d8      \tcost: 1 die \tindex: 0");
+                    System.out.println("Secret 1d8    \tcost: 1 die \tindex: 0");
                     break;
                 case 100:
-                    System.out.println("Secret 1d20     \tcost: 3 die \tindex: 0");
+                    System.out.println("Secret 1d20   \tcost: 3 die \tindex: 0");
                     break;
             }
 
@@ -291,26 +291,25 @@ public class DiceMage extends Player {
                     }
                     System.out.println("Enter");
                     scan.nextLine();
-                    companionDice.removeAll(deadAttackers);
-                    defender.companionDice.removeAll(deadDefenders);
-                    for (int j = 0; j < deadAttackers.size(); j++) {
-                        int strength = deadAttackers.get(i).numOfSides;
-                        if (companions.containsKey(strength)) {
-                            int num = companions.get(deadAttackers.get(i).numOfSides);
-                            num--;
-                            companions.put(strength, num);
-                        }
-                    }
-                    for (int j = 0; j < deadDefenders.size(); j++) {
-                        int strength = deadDefenders.get(i).numOfSides;
-                        if (defender.companions.containsKey(strength)) {
-                            int num = defender.companions.get(deadDefenders.get(i).numOfSides);
-                            num--;
-                            defender.companions.put(strength, num);
-                        }
+                }
+                companionDice.removeAll(deadAttackers);
+                defender.companionDice.removeAll(deadDefenders);
+                for (int i = 0; i < deadAttackers.size(); i++) {
+                    int strength = deadAttackers.get(i).numOfSides;
+                    if (companions.containsKey(strength)) {
+                        int num = companions.get(deadAttackers.get(i).numOfSides);
+                        num--;
+                        companions.put(strength, num);
                     }
                 }
-
+                for (int j = 0; j < deadDefenders.size(); j++) {
+                    int strength = deadDefenders.get(j).numOfSides;
+                    if (defender.companions.containsKey(strength)) {
+                        int num = defender.companions.get(deadDefenders.get(j).numOfSides);
+                        num--;
+                        defender.companions.put(strength, num);
+                    }
+                }
             } else {
                 System.out.printf("No defender %s Mage %s hit.\n", defender.color, defender.name);
                 defender.health--;
