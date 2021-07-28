@@ -148,7 +148,7 @@ public class Game {
 
     public static void playHighLow(Player player) {
         Scanner scan = new Scanner(System.in);
-        if (player.dice == null) {
+        if (player.dice.size() < 1) {
             System.out.println("How many dice do you want to play Higher or Lower with?");
             int diceAmount = scan.nextInt();
             scan.nextLine();
@@ -162,62 +162,62 @@ public class Game {
                 scan.nextLine();
                 player.addDice(diceAmount, 6);
             }
-            System.out.println("The values go from " + player.dice.size() + " to " + (player.dice.size() * 6));
-            boolean didLose = false;
+        }
+        System.out.println("The values go from " + player.dice.size() + " to " + (player.dice.size() * 6));
+        boolean didLose = false;
+        player.rollAll();
+        player.score = 0;
+
+        while (!didLose) {
+            System.out.println();
+            int total = player.getTotalDiceValue(player.dice);
+            int newTotal;
+            Display.dice(player.dice);
+            System.out.println(total);
+            System.out.println("Higher or lower? enter: h/l");
+            String inputHL = scan.next();
             player.rollAll();
-            player.score = 0;
+            newTotal = player.getTotalDiceValue(player.dice);
+            Display.dice(player.dice);
+            System.out.println(newTotal);
+            boolean isLarger = newTotal > total;
 
-            while (!didLose) {
-                System.out.println();
-                int total = player.getTotalDiceValue(player.dice);
-                int newTotal;
-                Display.dice(player.dice);
-                System.out.println(total);
-                System.out.println("Higher or lower? enter: h/l");
-                String inputHL = scan.next();
-                player.rollAll();
-                newTotal = player.getTotalDiceValue(player.dice);
-                Display.dice(player.dice);
-                System.out.println(newTotal);
-                boolean isLarger = newTotal > total;
-
-                if (inputHL.equals("h")) { //guessed higher
-                    if (!isLarger) {
-                        didLose = true;
-                        System.out.println("Sorry you lost");
-                    } else {
-                        System.out.println("\nYou won");
-                        player.score += 1;
-                    }
-                } else { //guessed lower
-                    if (isLarger || total == newTotal) {
-                        didLose = true;
-                        System.out.println("Sorry you lost");
-                    } else {
-                        System.out.println("\nyou won");
-                        player.score += 1;
-                    }
-
+            if (inputHL.equals("h")) { //guessed higher
+                if (!isLarger) {
+                    didLose = true;
+                    System.out.println("Sorry you lost");
+                } else {
+                    System.out.println("\nYou won");
+                    player.score += 1;
+                }
+            } else { //guessed lower
+                if (isLarger || total == newTotal) {
+                    didLose = true;
+                    System.out.println("Sorry you lost");
+                } else {
+                    System.out.println("\nyou won");
+                    player.score += 1;
                 }
 
-                System.out.println("Your score is " + player.score);
-
-//                if (player.score > player.winStreak) {
-//                    player.winStreak = player.score;
-//                }
-//
-//                System.out.println("Your win streak is " + player.winStreak);
-
             }
 
-            System.out.println("Want to play again? enter y/n");
-            String playAgain = scan.next();
+            System.out.println("Your score is " + player.score);
 
-            if (playAgain.equalsIgnoreCase("y")) {
-                Game.playHighLow(player);
-            } else {
-                System.out.println("Good Bye");
+            if (player.score > player.winStreak) {
+                player.winStreak = player.score;
             }
+
+            System.out.println("Your win streak is " + player.winStreak);
+
+        }
+
+        System.out.println("Want to play again? enter y/n");
+        String playAgain = scan.next();
+
+        if (playAgain.equalsIgnoreCase("y")) {
+            Game.playHighLow(player);
+        } else {
+            System.out.println("Good Bye");
         }
     }
 

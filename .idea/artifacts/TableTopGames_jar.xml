@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="TableTopGames:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/TableTopGames_jar</output-path>
+    <root id="archive" name="TableTopGames.jar">
+      <element id="module-output" name="TableTopGames" />
+    </root>
+  </artifact>
+</component>

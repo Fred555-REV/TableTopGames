@@ -9,6 +9,7 @@ public class Player {
     public int score;
     public int bonus;
     public List<Die> dice;
+    public int winStreak;
 
     public Player(String name, String color) {
         this.name = name;
