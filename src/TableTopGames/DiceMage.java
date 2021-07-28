@@ -152,23 +152,25 @@ public class DiceMage extends Player {
         int secret = 0;
         if (!hasSecret) {
 
-            if (dice.size() > 7) {
+            if (health < 3) {
+                secret = (int) Math.floor(Math.random() * 40) + 1;
+            } else if (dice.size() > 7) {
                 secret = (int) Math.floor(Math.random() * 100) + 1;
             } else {
                 secret = (int) Math.floor(Math.random() * 400) + 1;
             }
 
             switch (secret) {
-                case 25:
+                case 5:
                     System.out.println("Secret 1d4    \tcost: 5 mana\tindex: 0");
                     break;
-                case 50:
+                case 10:
                     System.out.println("Secret 1d6    \tcost: 6 mana\tindex: 0");
                     break;
-                case 75:
+                case 15:
                     System.out.println("Secret 1d8    \tcost: 1 die \tindex: 0");
                     break;
-                case 100:
+                case 20:
                     System.out.println("Secret 1d20   \tcost: 3 die \tindex: 0");
                     break;
             }
@@ -182,20 +184,20 @@ public class DiceMage extends Player {
         switch (index) {
             case 0:
                 switch (secret) {
-                    case 25:
+                    case 5:
                         companionStrength = 4;
                         mana -= 5;
                         break;
-                    case 50:
+                    case 10:
                         companionStrength = 6;
                         mana -= 6;
                         break;
-                    case 75:
+                    case 15:
                         companionStrength = 8;
                         dice.remove(0);
                         powerLevel--;
                         break;
-                    case 100:
+                    case 20:
                         companionStrength = 20;
                         for (int i = 0; i < 3; i++) {
                             dice.remove(0);
