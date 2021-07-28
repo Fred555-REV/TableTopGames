@@ -74,7 +74,7 @@ public class Display {
         }
     }
 
-    public static void companions(DiceMage mage) {
+    public static void den(DiceMage mage) {
         System.out.println("Den:");
         //powerlevels 3 4 6 8 20
         for (int i = 0; i <= 20; i++) {
@@ -84,10 +84,6 @@ public class Display {
 
         }
         System.out.println();
-    }
-
-    public static void companionDice(DiceMage mage) {
-
     }
 
     public static void score(Player player) {

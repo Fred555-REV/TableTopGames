@@ -108,12 +108,12 @@ public class DiceMage extends Player {
                     for (Player player : Turn.players) {
                         DiceMage mage = (DiceMage) player;
                         mage.stats();
-                        Display.companions(mage);
+                        Display.den(mage);
                         System.out.println("----------");
                     }
                 } else {
                     stats();
-                    Display.companions(this);
+                    Display.den(this);
                     System.out.println("----------");
                 }
                 System.out.println("done?");
