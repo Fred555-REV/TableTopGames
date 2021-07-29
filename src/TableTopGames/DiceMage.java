@@ -15,7 +15,7 @@ public class DiceMage extends Player {
         super(name, color);
         health = 5;
         powerLevel = 6;
-        mana = 0;
+        mana = 2;
         isAlive = true;
         hasSecret = false;
     }
