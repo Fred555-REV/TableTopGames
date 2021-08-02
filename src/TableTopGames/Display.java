@@ -34,19 +34,19 @@ public class Display {
         System.out.println("Actions");
         int powerUpCost;
         if (mage.dice.size() > 6) {
-            powerUpCost = 4 + (mage.dice.size() - 6 + mage.companionDice.size());
+            powerUpCost = 4 + (mage.dice.size() - 6);
         } else {
-            powerUpCost = 4 + mage.companionDice.size();
+            powerUpCost = 4;
         }
-        if (mage.mana > powerUpCost) {
-            System.out.println("(1) increase power for " + powerUpCost + " (doesn't end turn.");
+        if (mage.mana >= powerUpCost) {
+            System.out.println("(1) increase power for " + powerUpCost + " (doesn't end turn.)");
         }
-        if (mage.mana >= 6) {
-            System.out.println("(2) summon a companion for min 6 mana (ends turn)");
+        if (mage.mana >= 7) {
+            System.out.println("(2) summon a companion for min 7 mana (ends turn)");
 
         }
         if (mage.companionDice.size() > 0) {
-            System.out.println("(3) attack with companions");
+            System.out.println("(3) attack with companions(ends turn)");
         }
         System.out.println("(4) view field (doesn't end turn)");
         System.out.println("(5) end turn");
@@ -54,19 +54,19 @@ public class Display {
 
     public static void availableCompanions(DiceMage mage) {
         System.out.println("Companions");
-        if (mage.mana >= 6) {
-            System.out.println("common 1d3    \tcost: 6 mana\tindex: 1");
-        }
         if (mage.mana >= 7) {
-            System.out.println("uncommon 1d4  \tcost: 7 mana\tindex: 2");
-
+            System.out.println("common 1d3    \tcost: 7 mana\tindex: 1");
         }
         if (mage.mana >= 8) {
-            System.out.println("rare 1d6      \tcost: 8 mana\tindex: 3");
+            System.out.println("uncommon 1d4  \tcost: 8 mana\tindex: 2");
 
         }
         if (mage.mana >= 9) {
-            System.out.println("epic 1d8      \tcost: 9 mana\tindex: 4");
+            System.out.println("rare 1d6      \tcost: 9 mana\tindex: 3");
+
+        }
+        if (mage.mana >= 10) {
+            System.out.println("epic 1d8      \tcost: 10 mana\tindex: 4");
 
         }
         if (mage.dice.size() >= 10) {

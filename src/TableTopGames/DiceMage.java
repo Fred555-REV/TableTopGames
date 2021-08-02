@@ -84,9 +84,9 @@ public class DiceMage extends Player {
             case 1:
                 int powerUpCost;
                 if (dice.size() > 6) {
-                    powerUpCost = 4 + (dice.size() - 6 + companionDice.size());
+                    powerUpCost = 4 + (dice.size() - 6);
                 } else {
-                    powerUpCost = 4 + companionDice.size();
+                    powerUpCost = 4;
                 }
                 if (mana > powerUpCost) {
                     powerUP();
@@ -94,7 +94,7 @@ public class DiceMage extends Player {
                 takeAction();
                 break;
             case 2:
-                if (mana >= 6) {
+                if (mana >= 7) {
                     addCompanion();
                 }
                 break;
@@ -136,9 +136,9 @@ public class DiceMage extends Player {
     public void powerUP() {
         int powerUpCost;
         if (dice.size() > 6) {
-            powerUpCost = 4 + (dice.size() - 6);//+companion amount
+            powerUpCost = 4 + (dice.size() - 6);
         } else {
-            powerUpCost = 4;//+companion amount
+            powerUpCost = 4;
         }
         mana -= powerUpCost;
         addDice(1);
@@ -209,19 +209,19 @@ public class DiceMage extends Player {
                 break;
             case 1:
                 companionStrength = 3;
-                mana -= 6;
+                mana -= 7;
                 break;
             case 2:
                 companionStrength = 4;
-                mana -= 7;
+                mana -= 8;
                 break;
             case 3:
                 companionStrength = 6;
-                mana -= 8;
+                mana -= 9;
                 break;
             case 4:
                 companionStrength = 8;
-                mana -= 9;
+                mana -= 10;
                 break;
             case 5:
                 companionStrength = 20;
