@@ -89,7 +89,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void ones(Player player) {
+    public static void ones(YachtseaPlayer player) {
         int total = 0;
         for (int i = 0; i < player.dice.size(); i++) {
             if (player.dice.get(i).value == 1) {
@@ -103,7 +103,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void twos(Player player) {
+    public static void twos(YachtseaPlayer player) {
         int total = 0;
         for (int i = 0; i < player.dice.size(); i++) {
             if (player.dice.get(i).value == 2) {
@@ -117,7 +117,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void threes(Player player) {
+    public static void threes(YachtseaPlayer player) {
         int total = 0;
         for (int i = 0; i < player.dice.size(); i++) {
             if (player.dice.get(i).value == 3) {
@@ -131,7 +131,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void fours(Player player) {
+    public static void fours(YachtseaPlayer player) {
         int total = 0;
         for (int i = 0; i < player.dice.size(); i++) {
             if (player.dice.get(i).value == 4) {
@@ -145,7 +145,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void fives(Player player) {
+    public static void fives(YachtseaPlayer player) {
         int total = 0;
         for (int i = 0; i < player.dice.size(); i++) {
             if (player.dice.get(i).value == 5) {
@@ -159,7 +159,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void sixes(Player player) {
+    public static void sixes(YachtseaPlayer player) {
         int total = 0;
         for (int i = 0; i < player.dice.size(); i++) {
             if (player.dice.get(i).value == 6) {
@@ -173,7 +173,7 @@ public class YachtseaScore {
         }
     }
 
-    public static void threeOAK(Player player) {
+    public static void threeOAK(YachtseaPlayer player) {
         for (int i = 0; i < player.dice.size(); i++) {
             int count = 0;
             int total = 0;

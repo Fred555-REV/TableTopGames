@@ -13,7 +13,7 @@ public class DiceMage extends Player {
 
     public DiceMage(String name, String color) {
         super(name, color);
-        health = 5;
+        health = 10;
         powerLevel = 6;
         mana = 2;
         isAlive = true;
@@ -153,9 +153,9 @@ public class DiceMage extends Player {
         if (!hasSecret) {
 
             if (health < 3) {
-                secret = (int) Math.floor(Math.random() * 40) + 1;
+                secret = (int) Math.floor(Math.random() * 20) + 1;
             } else if (dice.size() > 7) {
-                secret = (int) Math.floor(Math.random() * 100) + 1;
+                secret = (int) Math.floor(Math.random() * 50) + 1;
             } else {
                 secret = (int) Math.floor(Math.random() * 400) + 1;
             }
