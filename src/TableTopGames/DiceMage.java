@@ -88,7 +88,7 @@ public class DiceMage extends Player {
                 } else {
                     powerUpCost = 4;
                 }
-                if (mana > powerUpCost) {
+                if (mana >= powerUpCost) {
                     powerUP();
                 }
                 takeAction();
