@@ -13,7 +13,7 @@ public class DiceMage extends Player {
 
     public DiceMage(String name, String color) {
         super(name, color);
-        health = 10;
+        health = 6;
         powerLevel = 6;
         mana = 2;
         isAlive = true;
@@ -92,7 +92,7 @@ public class DiceMage extends Player {
                 if (mana >= powerUpCost) {
                     powerUP();
                 }
-                takeAction();
+//                takeAction();
                 break;
             case 2:
                 if (mana >= 7) {
@@ -144,6 +144,7 @@ public class DiceMage extends Player {
         mana -= powerUpCost;
         addDice(1);
         powerLevel = dice.size();
+        health++;
         stats();
     }
 
@@ -260,9 +261,9 @@ public class DiceMage extends Player {
         }
 
         if (defender != null) {
-            System.out.println(color + " Mage " + name + "'s companion strength");
+            System.out.println(Color.getColor(this) + color + " Mage " + name + "'s companion strength" + Color.RESET);
             Display.dice(companionDice);
-            System.out.println(defender.color + " Mage " + defender.name + "'s companion strength");
+            System.out.println(Color.getColor(defender) + defender.color + " Mage " + defender.name + "'s companion strength" + Color.RESET);
             Display.dice(defender.companionDice);
 
             //loop through all dice if defender has companionDice
@@ -282,10 +283,10 @@ public class DiceMage extends Player {
                     }
 
                     if (attack > defense) {
-                        System.out.println("Attack stronger, defender dies");
+                        System.out.println(Color.getColor(this) + "Attack stronger, defender dies" + Color.RESET);
                         deadDefenders.add(defender.companionDice.get(i));
                     } else if (defense > attack) {
-                        System.out.println("Defense stronger, attacker dies");
+                        System.out.println(Color.getColor(defender) + "Defense stronger, attacker dies" + Color.RESET);
                         deadAttackers.add(companionDice.get(i));
                     } else {
                         System.out.println("Attack and defense equal, both die.");
@@ -314,7 +315,7 @@ public class DiceMage extends Player {
                     }
                 }
             } else {
-                System.out.printf("No defender %s Mage %s hit.\n", defender.color, defender.name);
+                System.out.printf("No defender %s%s Mage %s%s hit.\n", Color.getColor(defender), defender.color, defender.name, Color.RESET);
                 defender.health--;
             }
         }

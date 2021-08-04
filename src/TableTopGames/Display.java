@@ -35,7 +35,7 @@ public class Display {
     }
 
     public static void availableActions(DiceMage mage) {
-        System.out.print(Color.GREEN);
+//        System.out.println();
         System.out.println("Actions");
         int powerUpCost;
         if (mage.dice.size() > 6) {
@@ -44,16 +44,16 @@ public class Display {
             powerUpCost = 4;
         }
         if (mage.mana >= powerUpCost) {
-            System.out.println("(1) increase power for " + powerUpCost + " (doesn't end turn.)");
+            System.out.println("(1) increase power for " + powerUpCost + " and increases health by 1(ends turn)");
         }
         if (mage.mana >= 7) {
-            System.out.println("(2) summon a companion for min 7 mana (ends turn)");
+            System.out.println("(2) summon a companion for min 7 mana(ends turn)");
 
         }
         if (mage.companionDice.size() > 0) {
             System.out.println("(3) attack with companions(ends turn)");
         }
-        System.out.println("(4) view field (doesn't end turn)");
+        System.out.println("(4) view field(doesn't end turn)");
         System.out.println("(5) end turn");
         System.out.print(Color.RESET);
     }
@@ -81,7 +81,7 @@ public class Display {
     }
 
     public static void den(DiceMage mage) {
-        System.out.println("Den:");
+        System.out.println(Color.getColor(mage) + "Den:");
         //powerlevels 3 4 6 8 20
         for (int i = 0; i <= 20; i++) {
             if (mage.companions.containsKey(i) && mage.companions.get(i) > 0) {
@@ -89,7 +89,7 @@ public class Display {
             }
 
         }
-        System.out.println();
+        System.out.println(Color.RESET);
     }
 
     public static void score(Player player) {
