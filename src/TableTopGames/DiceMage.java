@@ -30,9 +30,10 @@ public class DiceMage extends Player {
     }
 
     public void stats() {
-        System.out.println(color + " Mage " + name);
-        System.out.printf("Health: %s\tPower Level: %s\tMana: %s\n", health, powerLevel, mana);
+        System.out.println(Color.getColor(this) + color + " Mage " + name + Color.RESET);
+        System.out.printf("%sHealth: %s%s\t%sPower Level: %s%s\t%sMana: %s%s\n", Color.RED, health, Color.RESET, Color.GREEN, powerLevel, Color.RESET, Color.BLUE, mana, Color.RESET);
     }
+//        System.out.printf("Health: %s%s||||||||%s\tPower Level: %s%s|||||||| %s\tMana: %s%s|||||||%s\n", Color.BLACK, Color.RED_BACKGROUND, Color.RESET, Color.BLACK, Color.GREEN_BACKGROUND, Color.RESET, Color.BLACK, Color.BLUE_BACKGROUND, Color.RESET);
 
     public void addCompanionDice(int companionStrength) {
         companionDice.add(new Die(companionStrength));
@@ -63,16 +64,16 @@ public class DiceMage extends Player {
 
         mana += netGain;
         if (netGain < 2) {
-            System.out.println(name + " feels a tiny mana pulse.");
+            System.out.println(Color.getColor(this) + name + Color.BLUE + " feels a tiny mana pulse." + Color.RESET);
         } else if (netGain < 5) {
-            System.out.println(name + " feels mana flowing in the air.");
+            System.out.println(Color.getColor(this) + name + Color.BLUE + " feels mana flowing in the air." + Color.RESET);
         } else if (netGain < 9) {
-            System.out.println(name + " feels mana surrounding them.");
+            System.out.println(Color.getColor(this) + name + Color.BLUE + " feels mana surrounding them." + Color.RESET);
         } else if (netGain >= 10) {
-            System.out.println(name + " feels mana coursing through their veins");
+            System.out.println(Color.getColor(this) + name + Color.BLUE + " feels mana coursing through their veins" + Color.RESET);
         }
         Display.dice(this.dice);
-        System.out.println(name + " pulled " + netGain + " mana, they now have " + mana + " total mana.");
+        System.out.println(Color.getColor(this) + name + Color.BLUE + " pulled " + netGain + " mana, they now have " + mana + " total mana." + Color.RESET);
     }
 
     public void takeAction() {

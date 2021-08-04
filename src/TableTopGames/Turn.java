@@ -53,6 +53,7 @@ public class Turn {
             player.addDice(diceAmount, numOfSides);
         }
     }
+
     public static void createMages(int diceAmount, int numOfSides) {
         Scanner scan = new Scanner(System.in);
 //        System.out.println("How many players will there be?");
@@ -124,7 +125,7 @@ public class Turn {
     }
 
     public static void displayTurn() {
-        System.out.println(getActivePlayer().name + "'s or " + getActivePlayer().color + "'s turn ");
+        System.out.println(Color.getColor(getActivePlayer()) + getActivePlayer().name + "'s or " + getActivePlayer().color + "'s turn " + Color.RESET);
     }
 
     public static void displayTurnsLeft() {

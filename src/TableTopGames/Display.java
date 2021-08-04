@@ -1,6 +1,8 @@
 package TableTopGames;
 
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,20 +10,22 @@ import java.util.List;
 public class Display {
     public static void dice(List<Die> list) {
         Collections.sort(list, Die::compareTo);
-        System.out.println();
-
+        System.out.println(Color.BLUE);
+        StringBuilder dice = new StringBuilder();
+        StringBuilder part1 = new StringBuilder();
+        StringBuilder part2 = new StringBuilder();
+        StringBuilder part3 = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            System.out.print("/¯¯¯\\");
+            part1.append("/¯¯¯\\");
+            part2.append("| ").append(list.get(i).value).append(" |");
+            part3.append("\\___/");
         }
-        System.out.println();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print("|" + " " + list.get(i).value + " " + "|");
-        }
-        System.out.println();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.print("\\___/");
-        }
-        System.out.println();
+        part1.append("\n");
+        part2.append("\n");
+        part3.append("\n");
+        dice.append(part1).append(part2).append(part3);
+        System.out.println(dice);
+        System.out.println(Color.RESET);
     }
 
     public static void allGames() {
@@ -31,6 +35,7 @@ public class Display {
     }
 
     public static void availableActions(DiceMage mage) {
+        System.out.print(Color.GREEN);
         System.out.println("Actions");
         int powerUpCost;
         if (mage.dice.size() > 6) {
@@ -50,6 +55,7 @@ public class Display {
         }
         System.out.println("(4) view field (doesn't end turn)");
         System.out.println("(5) end turn");
+        System.out.print(Color.RESET);
     }
 
     public static void availableCompanions(DiceMage mage) {
@@ -135,7 +141,7 @@ public class Display {
 
     public static void turnDiceMage() {
         DiceMage mage = (DiceMage) Turn.getActivePlayer();
-        System.out.println(mage.color + " Mage " + mage.name + "'s turn");
+        System.out.println(Color.getColor(mage) + mage.color + " Mage " + mage.name + "'s turn" + Color.RESET);
     }
 
 }
