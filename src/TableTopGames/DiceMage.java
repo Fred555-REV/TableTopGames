@@ -85,12 +85,12 @@ public class DiceMage extends Player {
             case 1:
                 int powerUpCost;
                 if (dice.size() > 6) {
-                    powerUpCost = 4 + (dice.size() - 6);
+                    powerUpCost = 4 + (dice.size() - 6) + (companionDice.size() * 2);
                 } else {
-                    powerUpCost = 4;
+                    powerUpCost = 4 + companionDice.size();
                 }
                 if (mana >= powerUpCost) {
-                    powerUP();
+                    powerUP(powerUpCost);
                 }
 //                takeAction();
                 break;
@@ -128,19 +128,13 @@ public class DiceMage extends Player {
             case 5:
                 break;
             default:
-                System.out.println("ERR enter number between 1-5");
+                System.out.println("Enter number between 1-5");
                 takeAction();
                 break;
         }
     }
 
-    public void powerUP() {
-        int powerUpCost;
-        if (dice.size() > 6) {
-            powerUpCost = 4 + (dice.size() - 6);
-        } else {
-            powerUpCost = 4;
-        }
+    public void powerUP(int powerUpCost) {
         mana -= powerUpCost;
         addDice(1);
         powerLevel = dice.size();
@@ -152,7 +146,7 @@ public class DiceMage extends Player {
         Scanner scan = new Scanner(System.in);
         Display.availableCompanions(this);
         int secret = 0;
-        if (!hasSecret) {
+        if (!hasSecret || companionDice.size() < 1) {
 
             if (health < 3) {
                 secret = (int) Math.floor(Math.random() * 20) + 1;
@@ -161,25 +155,27 @@ public class DiceMage extends Player {
             } else {
                 secret = (int) Math.floor(Math.random() * 400) + 1;
             }
-
+            System.out.print(Color.BLACK_BOLD);
             switch (secret) {
                 case 5:
-                    System.out.println("Secret 1d4    \tcost: 5 mana\tindex: 0");
+                    System.out.println("Secret 1d5  \tcost: 5 mana\tindex: 0");
                     break;
                 case 10:
-                    System.out.println("Secret 1d6    \tcost: 6 mana\tindex: 0");
+                    System.out.println("Secret 1d7  \tcost: 7 mana\tindex: 0");
                     break;
                 case 15:
-                    System.out.println("Secret 1d8    \tcost: 1 die \tindex: 0");
+                    System.out.println("Secret 1d8  \tcost: 1 die \tindex: 0");
                     break;
                 case 20:
-                    System.out.println("Secret 1d20   \tcost: 3 die \tindex: 0");
+                    System.out.println("Secret 2d9  \tcost: 3 die \tindex: 0");
                     break;
             }
+            System.out.print(Color.RESET);
+
 
         }
 
-        System.out.println("Choose companion");
+        System.out.println("\nChoose companion");
         int index = scan.nextInt();
         scan.nextLine();
         int companionStrength = 0;
@@ -187,12 +183,12 @@ public class DiceMage extends Player {
             case 0:
                 switch (secret) {
                     case 5:
-                        companionStrength = 4;
+                        companionStrength = 5;
                         mana -= 5;
                         break;
                     case 10:
-                        companionStrength = 6;
-                        mana -= 6;
+                        companionStrength = 7;
+                        mana -= 7;
                         break;
                     case 15:
                         companionStrength = 8;
@@ -200,50 +196,80 @@ public class DiceMage extends Player {
                         powerLevel--;
                         break;
                     case 20:
-                        companionStrength = 20;
+                        companionStrength = 9;
                         for (int i = 0; i < 3; i++) {
                             dice.remove(0);
                             powerLevel--;
                         }
                         break;
+                    default:
+                        System.out.println("Companion not available");
+                        addCompanion();
+                        break;
                 }
                 hasSecret = true;
                 break;
             case 1:
-                companionStrength = 3;
-                mana -= 7;
+                companionStrength = validateSelection(7, 3);
                 break;
             case 2:
-                companionStrength = 4;
-                mana -= 8;
+                companionStrength = validateSelection(8, 4);
                 break;
             case 3:
-                companionStrength = 6;
-                mana -= 9;
+                companionStrength = validateSelection(9, 6);
                 break;
             case 4:
-                companionStrength = 8;
-                mana -= 10;
+                companionStrength = validateSelection(10, 8);
                 break;
             case 5:
-                companionStrength = 20;
-                for (int i = 0; i < 5; i++) {
-                    dice.remove(0);
-                    powerLevel--;
+                if (dice.size() >= 10) {
+                    companionStrength = 20;
+                    for (int i = 0; i < 5; i++) {
+                        dice.remove(0);
+                        powerLevel--;
+                    }
+                } else {
+                    System.out.println("Companion not available");
+                    addCompanion();
                 }
+                break;
+            default:
+                System.out.println("Enter number between 1-5");
+                addCompanion();
                 break;
         }
 
-
-        if (companions.containsKey(companionStrength)) {
-            int value = companions.get(companionStrength);
-            value++;
-            companions.put(companionStrength, value);
-            addCompanionDice(companionStrength);
-        } else {
-            companions.put(companionStrength, 1);
-            addCompanionDice(companionStrength);
+        if (companionStrength > 0) {
+            if (companions.containsKey(companionStrength)) {
+                int value = companions.get(companionStrength);
+                value++;
+                if (companionStrength == 9) {
+                    value++;
+                    addCompanionDice(companionStrength);
+                }
+                companions.put(companionStrength, value);
+                addCompanionDice(companionStrength);
+            } else {
+                if (companionStrength == 9) {
+                    companions.put(companionStrength, 2);
+                    addCompanionDice(companionStrength);
+                } else {
+                    companions.put(companionStrength, 1);
+                }
+                addCompanionDice(companionStrength);
+            }
         }
+    }
+
+    private int validateSelection(int manaCost, int companionStrength) {
+        if (mana >= manaCost) {
+            mana -= manaCost;
+        } else {
+            System.out.println("Companion not available");
+            companionStrength = 0;
+            addCompanion();
+        }
+        return companionStrength;
     }
 
     public void attackWithCompanions() {

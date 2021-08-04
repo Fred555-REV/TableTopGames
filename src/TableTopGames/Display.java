@@ -39,9 +39,9 @@ public class Display {
         System.out.println("Actions");
         int powerUpCost;
         if (mage.dice.size() > 6) {
-            powerUpCost = 4 + (mage.dice.size() - 6);
+            powerUpCost = 4 + (mage.dice.size() - 6) + (mage.companionDice.size() * 2);
         } else {
-            powerUpCost = 4;
+            powerUpCost = 4 + mage.companionDice.size();
         }
         if (mage.mana >= powerUpCost) {
             System.out.println("(1) increase power for " + powerUpCost + " and increases health by 1(ends turn)");
@@ -59,24 +59,24 @@ public class Display {
     }
 
     public static void availableCompanions(DiceMage mage) {
-        System.out.println("Companions");
+        System.out.println("\nCompanions Available");
         if (mage.mana >= 7) {
-            System.out.println("common 1d3    \tcost: 7 mana\tindex: 1");
+            System.out.println(Color.YELLOW + "common 1d3    \tcost: 7 mana\tindex: 1");
         }
         if (mage.mana >= 8) {
-            System.out.println("uncommon 1d4  \tcost: 8 mana\tindex: 2");
+            System.out.println(Color.GREEN + "uncommon 1d4  \tcost: 8 mana\tindex: 2");
 
         }
         if (mage.mana >= 9) {
-            System.out.println("rare 1d6      \tcost: 9 mana\tindex: 3");
+            System.out.println(Color.BLUE + "rare 1d6      \tcost: 9 mana\tindex: 3");
 
         }
         if (mage.mana >= 10) {
-            System.out.println("epic 1d8      \tcost: 10 mana\tindex: 4");
+            System.out.println(Color.MAGENTA + "epic 1d8      \tcost: 10 mana\tindex: 4");
 
         }
         if (mage.dice.size() >= 10) {
-            System.out.println("legendary 1d20\tcost: 5 die \tindex: 5");
+            System.out.println(Color.ORANGE + "legendary 1d20\tcost: 5 die \tindex: 5" + Color.RESET);
         }
     }
 
@@ -141,7 +141,7 @@ public class Display {
 
     public static void turnDiceMage() {
         DiceMage mage = (DiceMage) Turn.getActivePlayer();
-        System.out.println(Color.getColor(mage) + mage.color + " Mage " + mage.name + "'s turn" + Color.RESET);
+        System.out.println("\n" + Color.getColor(mage) + mage.color + " Mage " + mage.name + "'s turn" + Color.RESET);
     }
 
 }
