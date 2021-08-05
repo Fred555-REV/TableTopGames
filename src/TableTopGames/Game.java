@@ -8,6 +8,7 @@ public class Game {
     public static boolean isRunning;
 
     public static void run() {
+        Turn.reset();
         isRunning = true;
         Display.allGames();
         Scanner scan = new Scanner(System.in);

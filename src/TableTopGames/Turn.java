@@ -124,6 +124,10 @@ public class Turn {
         turnMax++;//for accidents
     }
 
+    public static void reset() {
+        players.removeAll(players);
+    }
+
     public static void displayTurn() {
         System.out.println(Color.getColor(getActivePlayer()) + getActivePlayer().name + "'s or " + getActivePlayer().color + "'s turn " + Color.RESET);
     }
