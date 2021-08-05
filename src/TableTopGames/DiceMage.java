@@ -58,7 +58,7 @@ public class DiceMage extends Player {
             if (freqOfDieMap.containsKey(i)) {
                 for (int j = 3; j <= freqOfDieMap.get(i); j++) {
                     netGain++;
-                    if (mana < 5) {
+                    if (mana < 5 && companionDice.size() < 1) {
                         netGain++;
                     }
                 }
