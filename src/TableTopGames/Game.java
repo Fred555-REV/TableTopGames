@@ -161,6 +161,7 @@ public class Game {
                 System.out.println("How many dice do you want to play Higher or Lower with?");
                 int diceAmount = scan.nextInt();
                 scan.nextLine();
+                player.resetDice();
                 player.addDice(diceAmount, 6);
             }
         }

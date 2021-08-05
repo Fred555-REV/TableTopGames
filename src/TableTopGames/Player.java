@@ -38,6 +38,10 @@ public class Player {
         }
     }
 
+    public void resetDice() {
+        dice.removeAll(dice);
+    }
+
     public void rollAll() {
         for (int i = 0; i < dice.size(); i++) {
             dice.get(i).roll();

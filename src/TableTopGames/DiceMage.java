@@ -13,9 +13,9 @@ public class DiceMage extends Player {
 
     public DiceMage(String name, String color) {
         super(name, color);
-        health = 6;
+        health = 10;
         powerLevel = 6;
-        mana = 2;
+        mana = 3;
         isAlive = true;
         hasSecret = false;
     }
@@ -58,6 +58,9 @@ public class DiceMage extends Player {
             if (freqOfDieMap.containsKey(i)) {
                 for (int j = 3; j <= freqOfDieMap.get(i); j++) {
                     netGain++;
+                    if (mana < 5) {
+                        netGain++;
+                    }
                 }
             }
         }
