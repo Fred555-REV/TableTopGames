@@ -24,7 +24,7 @@ public class Game {
                 runDiceMage();
                 break;
         }
-        if (index < 0 || index > 2) {
+        if (index < 0 || index > 3) {
             System.out.println("Error: " + index + " not a game");
             run();
         }
