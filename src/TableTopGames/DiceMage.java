@@ -13,7 +13,7 @@ public class DiceMage extends Player {
 
     public DiceMage(String name, String color) {
         super(name, color);
-        health = 10;
+        health = 8;
         powerLevel = 6;
         mana = 3;
         isAlive = true;
@@ -167,10 +167,10 @@ public class DiceMage extends Player {
                     System.out.println("Secret 1d7  \tcost: 7 mana\tindex: 0");
                     break;
                 case 15:
-                    System.out.println("Secret 1d8  \tcost: 1 die \tindex: 0");
+                    System.out.println("Secret 1d9  \tcost: 1 die \tindex: 0");
                     break;
                 case 20:
-                    System.out.println("Secret 2d9  \tcost: 3 die \tindex: 0");
+                    System.out.println("Secret 2d11  \tcost: 3 die \tindex: 0");
                     break;
             }
             System.out.print(Color.RESET);
@@ -194,12 +194,12 @@ public class DiceMage extends Player {
                         mana -= 7;
                         break;
                     case 15:
-                        companionStrength = 8;
+                        companionStrength = 9;
                         dice.remove(0);
                         powerLevel--;
                         break;
                     case 20:
-                        companionStrength = 9;
+                        companionStrength = 11;
                         for (int i = 0; i < 3; i++) {
                             dice.remove(0);
                             powerLevel--;
@@ -246,14 +246,14 @@ public class DiceMage extends Player {
             if (companions.containsKey(companionStrength)) {
                 int value = companions.get(companionStrength);
                 value++;
-                if (companionStrength == 9) {
+                if (companionStrength == 11) {
                     value++;
                     addCompanionDice(companionStrength);
                 }
                 companions.put(companionStrength, value);
                 addCompanionDice(companionStrength);
             } else {
-                if (companionStrength == 9) {
+                if (companionStrength == 11) {
                     companions.put(companionStrength, 2);
                     addCompanionDice(companionStrength);
                 } else {

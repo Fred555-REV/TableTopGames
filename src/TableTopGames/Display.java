@@ -16,9 +16,15 @@ public class Display {
         StringBuilder part2 = new StringBuilder();
         StringBuilder part3 = new StringBuilder();
         for (int i = 0; i < list.size(); i++) {
-            part1.append("/¯¯¯\\");
-            part2.append("| ").append(list.get(i).value).append(" |");
-            part3.append("\\___/");
+            if (list.get(i).value > 9) {
+                part1.append("/¯¯¯¯\\ ");
+                part2.append("| ").append(list.get(i).value).append(" | ");
+                part3.append("\\____/ ");
+            } else {
+                part1.append("/¯¯¯\\ ");
+                part2.append("| ").append(list.get(i).value).append(" | ");
+                part3.append("\\___/ ");
+            }
         }
         part1.append("\n");
         part2.append("\n");
@@ -46,7 +52,7 @@ public class Display {
         if (mage.mana >= powerUpCost) {
             System.out.println("(1) increase power for " + powerUpCost + " and increases health by 1(ends turn)");
         }
-        if (mage.mana >= 7) {
+        if (mage.mana >= 7||mage.dice.size()>=10) {
             System.out.println("(2) summon a companion for min 7 mana(ends turn)");
 
         }

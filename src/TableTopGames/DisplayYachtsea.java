@@ -195,7 +195,6 @@ public class DisplayYachtsea {
             if (count1 == 3) {
                 threeOAK = player.dice.get(i).value;
             }
-
             for (int k = 0; k < player.dice.size(); k++) {
                 count2 = 0;
                 for (int l = 0; l < player.dice.size(); l++) {
@@ -215,8 +214,6 @@ public class DisplayYachtsea {
             if (isDone) {
                 break;
             }
-
-
         }
     }
 
