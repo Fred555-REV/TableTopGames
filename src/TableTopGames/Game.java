@@ -24,10 +24,10 @@ public class Game {
             case 3:
                 runDiceMage();
                 break;
-        }
-        if (index < 0 || index > 3) {
-            System.out.println("Error: " + index + " not a game");
-            run();
+            default:
+                System.out.println("Error: " + index + " not a game");
+                run();
+                break;
         }
     }
 
@@ -137,7 +137,7 @@ public class Game {
             if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
                 Display.dice(player.dice);
-                YachtseaScore.addYachtsea(player);
+                player.addYachtsea();
                 Display.score(player);
             } else {
                 Display.dice(player.dice);
