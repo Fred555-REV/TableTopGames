@@ -2,26 +2,55 @@ package TableTopGames;
 
 public class DisplayYachtsea {
 
-    public static void possibleYachtseaScores(Player player) {
-
-        ones(player);
-        twos(player);
-        threes(player);
-        fours(player);
-        fives(player);
-        sixes(player);
-        //^ ^ ^ ^ upper ^ ^ ^ ^
-        //v v v v lower v v v v
-        threeOAK(player);   // of a kind
-        fourOAK(player);    // of a kind
-        fullHouse(player);
-        smStraight(player);
-        lgStraight(player);
-        fiveOAK(player);    // of a kind
-        chance(player);
+    public static void possibleScores(YachtseaPlayer player) {
+        for (int i = 0; i < player.scoreSheet.length; i++) {
+            if (player.scoreSheet[i] != 5) {
+                switch (i) {
+                    case 0:
+                        ones(player);
+                        break;
+                    case 1:
+                        twos(player);
+                        break;
+                    case 2:
+                        threes(player);
+                        break;
+                    case 3:
+                        fours(player);
+                        break;
+                    case 4:
+                        fives(player);
+                        break;
+                    case 5:
+                        sixes(player);
+                        break;
+                    case 6:
+                        threeOAK(player);   // of a kind
+                        break;
+                    case 7:
+                        fourOAK(player);    // of a kind
+                        break;
+                    case 8:
+                        fullHouse(player);
+                        break;
+                    case 9:
+                        smStraight(player);
+                        break;
+                    case 10:
+                        lgStraight(player);
+                        break;
+                    case 11:
+                        fiveOAK(player);    // of a kind / Yachtsea
+                        break;
+                    case 12:
+                        chance(player);
+                        break;
+                }
+            }
+        }
     }
 
-    public static void availableYachtseaScores(YachtseaPlayer player) {
+    public static void scoreSheet(YachtseaPlayer player) {
         for (int i = 0; i < player.scoreSheet.length; i++) {
             if (player.scoreSheet[i] != 5) {
                 switch (i) {

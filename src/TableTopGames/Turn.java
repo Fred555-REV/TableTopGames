@@ -70,7 +70,7 @@ public class Turn {
             System.out.println("Enter color");
             String color = scan.next().trim();
 
-            DiceMage player = new DiceMage(name, color);
+            Mage player = new Mage(name, color);
             Turn.addPlayer(player);
             player.addDice(diceAmount, numOfSides);
         }
@@ -126,6 +126,8 @@ public class Turn {
 
     public static void reset() {
         players.removeAll(players);
+        turnMax = 0;
+        turnCounter = 0;
     }
 
     public static void displayTurn() {

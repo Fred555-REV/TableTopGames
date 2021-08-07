@@ -1,16 +1,14 @@
 package TableTopGames;
 
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 public class Display {
     public static void dice(List<Die> list) {
-        Collections.sort(list, Die::compareTo);
-        System.out.println(Color.BLUE);
+//        Collections.sort(list, Die::compareTo);
+//        System.out.println(Color.BLUE);
         StringBuilder dice = new StringBuilder();
         StringBuilder part1 = new StringBuilder();
         StringBuilder part2 = new StringBuilder();
@@ -40,7 +38,7 @@ public class Display {
         System.out.println("DiceMage, index: 3");
     }
 
-    public static void availableActions(DiceMage mage) {
+    public static void availableActions(Mage mage) {
 //        System.out.println();
         System.out.println("Actions");
         int powerUpCost;
@@ -52,7 +50,7 @@ public class Display {
         if (mage.mana >= powerUpCost) {
             System.out.println("(1) increase power for " + powerUpCost + " and increases health by 1(ends turn)");
         }
-        if (mage.mana >= 7||mage.dice.size()>=10) {
+        if (mage.mana >= 7 || mage.dice.size() >= 10) {
             System.out.println("(2) summon a companion for min 7 mana(ends turn)");
 
         }
@@ -64,7 +62,7 @@ public class Display {
         System.out.print(Color.RESET);
     }
 
-    public static void availableCompanions(DiceMage mage) {
+    public static void availableCompanions(Mage mage) {
         System.out.println("\nCompanions Available");
         if (mage.mana >= 7) {
             System.out.println(Color.YELLOW + "common 1d3    \tcost: 7 mana\tindex: 1");
@@ -86,7 +84,7 @@ public class Display {
         }
     }
 
-    public static void den(DiceMage mage) {
+    public static void den(Mage mage) {
         System.out.println(Color.getColor(mage) + "Den:");
         //powerlevels 3 4 6 8 20
         for (int i = 0; i <= 20; i++) {
@@ -135,18 +133,18 @@ public class Display {
     }
 
     public static void survivor() {
-        DiceMage survivor;
-        if (((DiceMage) Turn.players.get(0)).health <= 0) {
-            survivor = (DiceMage) Turn.players.get(1);
+        Mage survivor;
+        if (((Mage) Turn.players.get(0)).health <= 0) {
+            survivor = (Mage) Turn.players.get(1);
             System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
         } else {
-            survivor = (DiceMage) Turn.players.get(0);
+            survivor = (Mage) Turn.players.get(0);
             System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
         }
     }
 
     public static void turnDiceMage() {
-        DiceMage mage = (DiceMage) Turn.getActivePlayer();
+        Mage mage = (Mage) Turn.getActivePlayer();
         System.out.println("\n" + Color.getColor(mage) + mage.color + " Mage " + mage.name + "'s turn" + Color.RESET);
     }
 

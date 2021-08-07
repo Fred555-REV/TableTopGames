@@ -7,7 +7,7 @@ import java.util.Scanner;
 public class Game {
     public static boolean isRunning;
 
-    public static void run() {
+    public static void select() {
         Turn.reset();
         isRunning = true;
         Display.allGames();
@@ -26,12 +26,13 @@ public class Game {
                 break;
             default:
                 System.out.println("Error: " + index + " not a game");
-                run();
+                select();
                 break;
         }
     }
 
-    public static void runYachtsea() {
+    private static void runYachtsea() {
+        Turn.reset();
         System.out.println("Welcome to Yachtsea.");
         Turn.createYachtseaPlayers(14, 5, 6);
         Turn.setTurns(13);
@@ -46,63 +47,10 @@ public class Game {
         if (Turn.players.size() > 1) {
             Display.winner();
         }
-        run();
+        select();
     }
 
-    public static void runHighLow() {
-        System.out.println("Welcome to High Low");
-        Turn.createPlayers();
-        for (Player player : Turn.players) {
-            playHighLow(player);
-            if (!isRunning) {
-                break;
-            }
-        }
-        run();
-    }
-
-    public static void runDiceMage() {
-        isRunning = true;
-        System.out.println("Welcome to Dice Mage");
-        Turn.createMages(6, 6);
-        while (isRunning) {
-            playDiceMage((DiceMage) Turn.getActivePlayer());
-            for (Player player : Turn.players) {
-                DiceMage mage = (DiceMage) player;
-                if (mage.health <= 0) {
-                    isRunning = false;
-                    break;
-                }
-            }
-            if (!isRunning) {
-                break;
-            }
-        }
-        Display.survivor();
-        run();
-    }
-
-    public static void playDiceMage(DiceMage mage) {
-        Scanner scan = new Scanner(System.in);
-
-        Display.turnDiceMage();
-
-        System.out.println("ready?");
-        String ready = scan.nextLine();
-        if (ready.equals("EXIT")) {
-            System.out.println("ok");
-            isRunning = false;
-        }
-
-        mage.rollAll();
-        mage.addMana();
-        mage.stats();
-        mage.takeAction();
-
-        Turn.turnPass();
-    }
-
-    public static void playYachtsea(YachtseaPlayer player) {
+    private static void playYachtsea(YachtseaPlayer player) {
         Scanner scan = new Scanner(System.in);
         System.out.println("ready?");
         String ready = scan.nextLine();
@@ -114,10 +62,12 @@ public class Game {
         for (Die die : player.dice) {
             die.roll();
         }
+        System.out.print(Color.getColor(player));
         Display.dice(player.dice);
         for (int i = 2; i <= 3; i++) {
 
             System.out.println("roll " + i);
+            System.out.print(Color.getColor(player));
             Display.dice(player.dice);
             List<Integer> diceToRoll = new ArrayList<>();
 
@@ -136,10 +86,12 @@ public class Game {
             }
             if (i == 3 || inputArr.length == 0) {
                 System.out.println("\nFinal Dice");
+                System.out.print(Color.getColor(player));
                 Display.dice(player.dice);
-                player.addYachtsea();
+                player.addScore();
                 Display.score(player);
             } else {
+                System.out.print(Color.getColor(player));
                 Display.dice(player.dice);
             }
         }
@@ -147,8 +99,22 @@ public class Game {
         Turn.turnPass();
     }
 
-    public static void playHighLow(Player player) {
+    private static void runHighLow() {
+        Turn.reset();
+        System.out.println("Welcome to High Low");
+        Turn.createPlayers();
+        for (Player player : Turn.players) {
+            playHighLow(player);
+            if (!isRunning) {
+                break;
+            }
+        }
+        select();
+    }
+
+    private static void playHighLow(Player player) {
         Scanner scan = new Scanner(System.in);
+        Turn.displayTurn();
         if (player.dice.size() < 1) {
             System.out.println("How many dice do you want to play Higher or Lower with?");
             int diceAmount = scan.nextInt();
@@ -174,12 +140,14 @@ public class Game {
             System.out.println();
             int total = player.getTotalDiceValue(player.dice);
             int newTotal;
+            System.out.print(Color.getColor(player));
             Display.dice(player.dice);
             System.out.println(total);
             System.out.println("Higher or lower? enter: h/l");
             String inputHL = scan.next();
             player.rollAll();
             newTotal = player.getTotalDiceValue(player.dice);
+            System.out.print(Color.getColor(player));
             Display.dice(player.dice);
             System.out.println(newTotal);
             boolean isLarger = newTotal > total;
@@ -220,7 +188,50 @@ public class Game {
             Game.playHighLow(player);
         } else {
             System.out.println("Good Bye");
+            Turn.turnPass();
         }
+    }
+
+    private static void runDiceMage() {
+        Turn.reset();
+        isRunning = true;
+        System.out.println("Welcome to Dice Mage");
+        Turn.createMages(6, 6);
+        while (isRunning) {
+            playDiceMage((Mage) Turn.getActivePlayer());
+            for (Player player : Turn.players) {
+                Mage mage = (Mage) player;
+                if (mage.health <= 0) {
+                    isRunning = false;
+                    break;
+                }
+            }
+            if (!isRunning) {
+                break;
+            }
+        }
+        Display.survivor();
+        select();
+    }
+
+    private static void playDiceMage(Mage mage) {
+        Scanner scan = new Scanner(System.in);
+
+        Display.turnDiceMage();
+
+        System.out.println("ready?");
+        String ready = scan.nextLine();
+        if (ready.equals("EXIT")) {
+            System.out.println("ok");
+            isRunning = false;
+        }
+
+        mage.rollAll();
+        mage.addMana();
+        mage.stats();
+        mage.takeAction();
+
+        Turn.turnPass();
     }
 
 }

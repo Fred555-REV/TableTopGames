@@ -1,8 +1,5 @@
 package TableTopGames;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class Test {
     public static void main(String[] args) {
 
@@ -18,7 +15,7 @@ public class Test {
 //        Score.addYahtzee(player1);
 //        Display.score(player1);
         System.out.println(Color.BLACK_BOLD);
-        DiceMage mage = new DiceMage("Fred", "Red");
+        Mage mage = new Mage("Fred", "Red");
 //        mage.addDice(6);
         System.out.println(mage.color + " Mage " + mage.name + "'s turn");
 //        mage.dice.get(0).value = 5;

@@ -13,6 +13,48 @@ public class YachtseaPlayer extends Player {
         this.dice = new ArrayList<>();
     }
 
+    public void ones() {
+        int total = 0;
+        for (int i = 0; i < dice.size(); i++) {
+            if (dice.get(i).value == 1) {
+                total++;
+            }
+        }
+        if (total != 0) {
+            System.out.println("Ones = " + total);
+            score += total;
+            bonus += total;
+        }
+    }
+
+    public void twos() {
+        int total = 0;
+        for (int i = 0; i < dice.size(); i++) {
+            if (dice.get(i).value == 2) {
+                total += 2;
+            }
+        }
+        if (total != 0) {
+            System.out.println("Twos = " + total);
+            score += total;
+            bonus += total;
+        }
+    }
+
+    public void threes() {
+        int total = 0;
+        for (int i = 0; i < dice.size(); i++) {
+            if (dice.get(i).value == 3) {
+                total += 3;
+            }
+        }
+        if (total != 0) {
+            System.out.println("Threes = " + total);
+            score += total;
+            bonus += total;
+        }
+    }
+
     public void fours() {
         int total = 0;
         for (int i = 0; i < dice.size(); i++) {
@@ -97,45 +139,6 @@ public class YachtseaPlayer extends Player {
         }
     }
 
-    public void fullHouse() {
-        boolean isDone = false;
-        for (int i = 0; i < dice.size(); i++) {
-            int count1 = 0;
-            int count2;
-            int threeOAK = 0;
-            for (int j = 0; j < dice.size(); j++) {
-                if (dice.get(i).value == dice.get(j).value) {
-                    count1++;
-                }
-            }
-            if (count1 == 3) {
-                threeOAK = dice.get(i).value;
-            }
-
-            for (int k = 0; k < dice.size(); k++) {
-                count2 = 0;
-                for (int l = 0; l < dice.size(); l++) {
-                    if (dice.get(k).value != threeOAK && dice.get(k).value == dice.get(l).value) {
-                        count2++;
-                    }
-                }
-                if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
-                    System.out.println("Full House = 25");
-                    score += 25;
-                    isDone = true;
-                }
-                if (isDone) {
-                    break;
-                }
-            }
-            if (isDone) {
-                break;
-            }
-
-
-        }
-    }
-
     public void smStraight() {
         int count = 0;
         int duplicateCount = 0;
@@ -181,6 +184,45 @@ public class YachtseaPlayer extends Player {
         }
     }
 
+    public void fullHouse() {
+        boolean isDone = false;
+        for (int i = 0; i < dice.size(); i++) {
+            int count1 = 0;
+            int count2;
+            int threeOAK = 0;
+            for (int j = 0; j < dice.size(); j++) {
+                if (dice.get(i).value == dice.get(j).value) {
+                    count1++;
+                }
+            }
+            if (count1 == 3) {
+                threeOAK = dice.get(i).value;
+            }
+
+            for (int k = 0; k < dice.size(); k++) {
+                count2 = 0;
+                for (int l = 0; l < dice.size(); l++) {
+                    if (dice.get(k).value != threeOAK && dice.get(k).value == dice.get(l).value) {
+                        count2++;
+                    }
+                }
+                if (count2 % 2 == 0 && threeOAK != 0 && count2 != 0) {
+                    System.out.println("Full House = 25");
+                    score += 25;
+                    isDone = true;
+                }
+                if (isDone) {
+                    break;
+                }
+            }
+            if (isDone) {
+                break;
+            }
+
+
+        }
+    }
+
     public void fiveOAK() {
         for (int i = 0; i < dice.size(); i++) {
             int count = 0;
@@ -191,7 +233,11 @@ public class YachtseaPlayer extends Player {
             }
 //            System.out.println("count " + count);
             if (count == 5) {
-                System.out.println("Yachtsea! = 50");
+                if (scoreSheet[11] != 5) {
+                    System.out.println("Yachtsea! = 50");
+                } else {
+                    System.out.println("Bonus Yachtsea!!! extra turn.");
+                }
                 score += 50;
                 break;
             }
@@ -209,49 +255,8 @@ public class YachtseaPlayer extends Player {
         score += total;
     }
 
-    public void threes() {
-        int total = 0;
-        for (int i = 0; i < dice.size(); i++) {
-            if (dice.get(i).value == 3) {
-                total += 3;
-            }
-        }
-        if (total != 0) {
-            System.out.println("Threes = " + total);
-            score += total;
-            bonus += total;
-        }
-    }
 
-    public void ones() {
-        int total = 0;
-        for (int i = 0; i < dice.size(); i++) {
-            if (dice.get(i).value == 1) {
-                total++;
-            }
-        }
-        if (total != 0) {
-            System.out.println("Ones = " + total);
-            score += total;
-            bonus += total;
-        }
-    }
-
-    public void twos() {
-        int total = 0;
-        for (int i = 0; i < dice.size(); i++) {
-            if (dice.get(i).value == 2) {
-                total += 2;
-            }
-        }
-        if (total != 0) {
-            System.out.println("Twos = " + total);
-            score += total;
-            bonus += total;
-        }
-    }
-
-    public void bonusYachtsea() {
+    public void bonus() {
         if (bonus >= 63 && scoreSheet[13] != 5) {
             scoreSheet[13] = 5;
             score += 35;
@@ -261,78 +266,70 @@ public class YachtseaPlayer extends Player {
         }
     }
 
-    public void addYachtsea() {
+    public void addScore() {
         Scanner scan = new Scanner(System.in);
-        DisplayYachtsea.possibleYachtseaScores(this);
-        System.out.println("When done looking at possible scores enter \"done\".");
+        DisplayYachtsea.possibleScores(this);
+        System.out.println(Color.getColor(this) + "When done looking at possible scores enter \"done\".");
         String nice = scan.next().trim();
         if (nice.equalsIgnoreCase("nice")) {
             System.out.println(nice);
         }
         System.out.println("These are available scores to add or erase");
-        DisplayYachtsea.availableYachtseaScores(this);
-        System.out.println("Which score would you like to add? enter index");
+        DisplayYachtsea.scoreSheet(this);
+        System.out.println("Which score would you like to add? enter index or -1 if bonus Yachtsea");
         int index = scan.nextInt();
         scan.nextLine();
         if (scoreSheet[index] != 5) {
-            scoreSheet[index] = 5;
             switch (index) {
                 case 0:
                     this.ones();
-                    this.bonusYachtsea();
                     break;
                 case 1:
                     this.twos();
-                    this.bonusYachtsea();
                     break;
                 case 2:
                     this.threes();
-                    this.bonusYachtsea();
                     break;
                 case 3:
                     this.fours();
-                    this.bonusYachtsea();
                     break;
                 case 4:
                     this.fives();
-                    this.bonusYachtsea();
                     break;
                 case 5:
                     this.sixes();
-                    this.bonusYachtsea();
                     break;
                 case 6:
                     this.threeOAK();
-                    this.bonusYachtsea();
                     break;
                 case 7:
                     this.fourOAK();
-                    this.bonusYachtsea();
                     break;
                 case 8:
                     this.fullHouse();
-                    this.bonusYachtsea();
                     break;
                 case 9:
                     this.smStraight();
-                    this.bonusYachtsea();
                     break;
                 case 10:
                     this.lgStraight();
-                    this.bonusYachtsea();
                     break;
                 case 11:
                     this.fiveOAK();
-                    this.bonusYachtsea();
                     break;
                 case 12:
                     this.chance();
-                    this.bonusYachtsea();
                     break;
                 default:
-                    this.addYachtsea();
+                    addScore();
             }
+            scoreSheet[index] = 5;
+            this.bonus();
+        } else {
+            fiveOAK();
+            addScore();
         }
+        System.out.print(Color.RESET);
 //        scan.close();
     }
 }

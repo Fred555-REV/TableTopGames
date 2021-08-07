@@ -2,7 +2,7 @@ package TableTopGames;
 
 import java.util.*;
 
-public class DiceMage extends Player {
+public class Mage extends Player {
     public int health;
     public int powerLevel;
     public int mana;
@@ -11,7 +11,7 @@ public class DiceMage extends Player {
     public Map<Integer, Integer> companions = new HashMap<>();
     public List<Die> companionDice = new ArrayList<>();
 
-    public DiceMage(String name, String color) {
+    public Mage(String name, String color) {
         super(name, color);
         health = 8;
         powerLevel = 6;
@@ -75,6 +75,8 @@ public class DiceMage extends Player {
         } else if (netGain >= 10) {
             System.out.println(Color.getColor(this) + name + Color.BLUE + " feels mana coursing through their veins" + Color.RESET);
         }
+        Collections.sort(dice, Die::compareTo);
+        System.out.print(Color.getColor(this));
         Display.dice(this.dice);
         System.out.println(Color.getColor(this) + name + Color.BLUE + " pulled " + netGain + " mana, they now have " + mana + " total mana." + Color.RESET);
     }
@@ -110,7 +112,7 @@ public class DiceMage extends Player {
             case 4:
                 if (Turn.players.size() > 0) {
                     for (Player player : Turn.players) {
-                        DiceMage mage = (DiceMage) player;
+                        Mage mage = (Mage) player;
                         mage.stats();
                         Display.den(mage);
                         System.out.println("----------");
@@ -278,9 +280,9 @@ public class DiceMage extends Player {
     public void attackWithCompanions() {
         Scanner scan = new Scanner(System.in);
 
-        DiceMage defender = null;
+        Mage defender = null;
         for (Player player : Turn.players) {
-            DiceMage mage = (DiceMage) player;
+            Mage mage = (Mage) player;
             if (mage != this) {
                 defender = mage;
             }
