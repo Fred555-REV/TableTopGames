@@ -136,10 +136,10 @@ public class Display {
         Mage survivor;
         if (((Mage) Turn.players.get(0)).health <= 0) {
             survivor = (Mage) Turn.players.get(1);
-            System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
+            System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!\n\n");
         } else {
             survivor = (Mage) Turn.players.get(0);
-            System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!");
+            System.out.println(survivor.color + " Mage " + survivor.name + " is the ULTIMATE BATTLE MAGE!!!!!\n\n");
         }
     }
 
