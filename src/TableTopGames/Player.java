@@ -1,7 +1,9 @@
 package TableTopGames;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
+import java.util.Scanner;
 
 public class Player {
     public String name;
@@ -47,4 +49,5 @@ public class Player {
             dice.get(i).roll();
         }
     }
+
 }

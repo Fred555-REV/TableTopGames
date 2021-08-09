@@ -84,8 +84,9 @@ public class Mage extends Player {
     public void takeAction() {
         Scanner scan = new Scanner(System.in);
         Display.availableActions(this);
-        int index = scan.nextInt();
-        scan.nextLine();
+//        int index = scan.nextInt();
+        int index = Validator.validateInputInt("");
+//        scan.nextLine();
         switch (index) {
             case 1:
                 int powerUpCost;
@@ -133,7 +134,7 @@ public class Mage extends Player {
             case 5:
                 break;
             default:
-                System.out.println("Enter number between 1-5");
+                System.out.println("Enter available number between 1-5");
                 takeAction();
                 break;
         }
@@ -180,11 +181,14 @@ public class Mage extends Player {
 
         }
 
-        System.out.println("\nChoose companion");
-        int index = scan.nextInt();
+//        System.out.println("\nChoose companion");
+        int index = Validator.validateInputInt("\nChoose companion");
+//        int index = scan.nextInt();
         scan.nextLine();
         int companionStrength = 0;
         switch (index) {
+            case -1:
+                break;
             case 0:
                 switch (secret) {
                     case 5:
@@ -215,16 +219,16 @@ public class Mage extends Player {
                 hasSecret = true;
                 break;
             case 1:
-                companionStrength = validateSelection(7, 3);
+                companionStrength = Validator.validateCompanion(this, 7, 3);
                 break;
             case 2:
-                companionStrength = validateSelection(8, 4);
+                companionStrength = Validator.validateCompanion(this, 8, 4);
                 break;
             case 3:
-                companionStrength = validateSelection(9, 6);
+                companionStrength = Validator.validateCompanion(this, 9, 6);
                 break;
             case 4:
-                companionStrength = validateSelection(10, 8);
+                companionStrength = Validator.validateCompanion(this, 10, 8);
                 break;
             case 5:
                 if (dice.size() >= 10) {
@@ -266,16 +270,6 @@ public class Mage extends Player {
         }
     }
 
-    private int validateSelection(int manaCost, int companionStrength) {
-        if (mana >= manaCost) {
-            mana -= manaCost;
-        } else {
-            System.out.println("Companion not available");
-            companionStrength = 0;
-            addCompanion();
-        }
-        return companionStrength;
-    }
 
     public void attackWithCompanions() {
         Scanner scan = new Scanner(System.in);
