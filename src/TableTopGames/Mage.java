@@ -100,7 +100,7 @@ public class Mage extends Player {
 //                takeAction();
                 break;
             case 2:
-                if (mana >= 7) {
+                if (mana >= 7 || dice.size() >= 10) {
                     addCompanion();
                 }
                 break;
