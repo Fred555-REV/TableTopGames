@@ -13,6 +13,8 @@ public class Game {
         Display.allGames();
         int index = Validator.validateInputInt("Enter index of game you want to play or 0 if you want to exit");
         switch (index) {
+            case 0:
+                System.exit(5);
             case 1:
                 runYachtsea();
                 break;
