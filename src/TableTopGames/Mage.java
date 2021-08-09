@@ -13,7 +13,7 @@ public class Mage extends Player {
 
     public Mage(String name, String color) {
         super(name, color);
-        health = 8;
+        health = 5;
         powerLevel = 6;
         mana = 3;
         isAlive = true;
@@ -118,6 +118,9 @@ public class Mage extends Player {
                 if (ready.equals("EXIT")) {
                     System.out.println("ok");
                     Game.isRunning = false;
+                } else if (ready.toUpperCase(Locale.ROOT).equals("CHICKEN")) {
+                    health += 10;
+                    mana += 10;
                 }
                 takeAction();
                 break;
@@ -145,7 +148,7 @@ public class Mage extends Player {
         if (!hasSecret || companionDice.size() < 1) {
             if (health < 4) {
                 secret = (int) Math.floor(Math.random() * 20) + 1;
-            } else if (dice.size() > 7||companionDice.size()<1) {
+            } else if (dice.size() > 7 || companionDice.size() < 1) {
                 secret = (int) Math.floor(Math.random() * 50) + 1;
             } else {
                 secret = (int) Math.floor(Math.random() * 400) + 1;
