@@ -20,20 +20,10 @@ public class Mage extends Player {
         hasSecret = false;
     }
 
-    public void rollAll() {
-        for (Die die : dice) {
-            die.roll();
-        }
-        for (Die die : companionDice) {
-            die.roll();
-        }
-    }
-
     public void stats() {
         System.out.println(Color.getColor(this) + color + " Mage " + name + Color.RESET);
         System.out.printf("%sHealth: %s%s\t%sPower Level: %s%s\t%sMana: %s%s\n", Color.RED, health, Color.RESET, Color.GREEN, powerLevel, Color.RESET, Color.BLUE, mana, Color.RESET);
     }
-//        System.out.printf("Health: %s%s||||||||%s\tPower Level: %s%s|||||||| %s\tMana: %s%s|||||||%s\n", Color.BLACK, Color.RED_BACKGROUND, Color.RESET, Color.BLACK, Color.GREEN_BACKGROUND, Color.RESET, Color.BLACK, Color.BLUE_BACKGROUND, Color.RESET);
 
     public void addCompanionDice(int companionStrength) {
         companionDice.add(new Die(companionStrength));
@@ -153,10 +143,9 @@ public class Mage extends Player {
         Display.availableCompanions(this);
         int secret = 0;
         if (!hasSecret || companionDice.size() < 1) {
-
-            if (health < 3) {
+            if (health < 4) {
                 secret = (int) Math.floor(Math.random() * 20) + 1;
-            } else if (dice.size() > 7) {
+            } else if (dice.size() > 7||companionDice.size()<1) {
                 secret = (int) Math.floor(Math.random() * 50) + 1;
             } else {
                 secret = (int) Math.floor(Math.random() * 400) + 1;
@@ -181,9 +170,7 @@ public class Mage extends Player {
 
         }
 
-//        System.out.println("\nChoose companion");
         int index = Validator.validateInputInt("\nChoose companion");
-//        int index = scan.nextInt();
         scan.nextLine();
         int companionStrength = 0;
         switch (index) {
@@ -270,11 +257,11 @@ public class Mage extends Player {
         }
     }
 
-
     public void attackWithCompanions() {
         Scanner scan = new Scanner(System.in);
-
         Mage defender = null;
+        //later on make it so there is a choice of who to attack
+        //and add display of all available players to attack
         for (Player player : Turn.players) {
             Mage mage = (Mage) player;
             if (mage != this) {
@@ -284,17 +271,16 @@ public class Mage extends Player {
                 mage.rollAll();
             }
         }
-
         if (defender != null) {
             System.out.println(Color.getColor(this) + color + " Mage " + name + "'s companion strength" + Color.RESET);
             Display.dice(companionDice);
             System.out.println(Color.getColor(defender) + defender.color + " Mage " + defender.name + "'s companion strength" + Color.RESET);
             Display.dice(defender.companionDice);
-
             //loop through all dice if defender has companionDice
             if (defender.companionDice.size() > 0) {
                 List<Die> deadAttackers = new ArrayList<>();
                 List<Die> deadDefenders = new ArrayList<>();
+                //all combat
                 for (int i = 0; i < companionDice.size(); i++) {
                     int attack = 0;
                     int defense = 0;
@@ -306,7 +292,6 @@ public class Mage extends Player {
                         defender.health--;
                         break;
                     }
-
                     if (attack > defense) {
                         System.out.println(Color.getColor(this) + "Attack stronger, defender dies" + Color.RESET);
                         deadDefenders.add(defender.companionDice.get(i));
@@ -321,6 +306,7 @@ public class Mage extends Player {
                     System.out.println("Enter");
                     scan.nextLine();
                 }
+                //Removal of dead companions
                 companionDice.removeAll(deadAttackers);
                 defender.companionDice.removeAll(deadDefenders);
                 for (int i = 0; i < deadAttackers.size(); i++) {
@@ -346,13 +332,3 @@ public class Mage extends Player {
         }
     }
 }
-//            int attack;
-//            int defense;
-//            if (attack > defense) {
-//                System.out.println("Attacker Stronger");
-//                for (Die die : companionDice) {
-//
-//                }
-//            } else {
-//                System.out.println("Defender Stronger");
-//            }

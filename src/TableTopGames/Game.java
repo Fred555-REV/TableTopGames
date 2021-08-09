@@ -11,9 +11,7 @@ public class Game {
         Turn.reset();
         isRunning = true;
         Display.allGames();
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter index of game you want to play or 0 if you want to exit");
-        int index = scan.nextInt();
+        int index = Validator.validateInputInt("Enter index of game you want to play or 0 if you want to exit");
         switch (index) {
             case 1:
                 runYachtsea();
