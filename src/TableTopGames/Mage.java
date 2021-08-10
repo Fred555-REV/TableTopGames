@@ -66,7 +66,7 @@ public class Mage extends Player {
         } else if (netGain >= 10) {
             System.out.println(Color.getColor(this) + name + Color.BLUE + " feels mana coursing through their veins" + Color.RESET);
         }
-        Collections.sort(dice, Die::compareTo);
+        dice.sort(Die::compareTo);
         System.out.print(Color.getColor(this));
         Display.dice(this.dice);
         System.out.println(Color.getColor(this) + name + Color.BLUE + " pulled " + netGain + " mana, they now have " + mana + " total mana." + Color.RESET);
@@ -313,18 +313,18 @@ public class Mage extends Player {
                 //Removal of dead companions
                 companionDice.removeAll(deadAttackers);
                 defender.companionDice.removeAll(deadDefenders);
-                for (int i = 0; i < deadAttackers.size(); i++) {
-                    int strength = deadAttackers.get(i).numOfSides;
+                for (Die deadAttacker : deadAttackers) {
+                    int strength = deadAttacker.numOfSides;
                     if (companions.containsKey(strength)) {
-                        int num = companions.get(deadAttackers.get(i).numOfSides);
+                        int num = companions.get(deadAttacker.numOfSides);
                         num--;
                         companions.put(strength, num);
                     }
                 }
-                for (int j = 0; j < deadDefenders.size(); j++) {
-                    int strength = deadDefenders.get(j).numOfSides;
+                for (Die deadDefender : deadDefenders) {
+                    int strength = deadDefender.numOfSides;
                     if (defender.companions.containsKey(strength)) {
-                        int num = defender.companions.get(deadDefenders.get(j).numOfSides);
+                        int num = defender.companions.get(deadDefender.numOfSides);
                         num--;
                         defender.companions.put(strength, num);
                     }
