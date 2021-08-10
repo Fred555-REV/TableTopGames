@@ -48,8 +48,9 @@ public class Mage extends Player {
             if (freqOfDieMap.containsKey(i)) {
                 for (int j = 3; j <= freqOfDieMap.get(i); j++) {
                     netGain++;
-                    if (mana < 5 && companionDice.size() < 1) {
+                    if (health < 4) {
                         netGain++;
+                        System.out.println(Color.getColor(this) + name + Color.BLUE + "'s blood awakens mana reserves.");
                     }
                 }
             }
