@@ -15,15 +15,11 @@ public class Validator {
 
             input = scan.nextInt();
 
-        } catch (ClassCastException cce) {
+        } catch (ClassCastException | InputMismatchException cce) {
             System.out.println("Your input is invalid, please try again");
             validOption = false;
-        } catch (InputMismatchException ime) {
-            System.out.println("Your input is invalid, please try again");
-            validOption = false;
-
         }
-        if (validOption == false) {
+        if (!validOption) {
             validateInputInt(prompt);
         }
         return input;
