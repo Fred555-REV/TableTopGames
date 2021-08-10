@@ -48,11 +48,10 @@ public class Display {
             powerUpCost = 4 + mage.companionDice.size();
         }
         if (mage.mana >= powerUpCost) {
-            System.out.println("(1) increase power for " + powerUpCost + " and increases health by 1(ends turn)");
+            System.out.println("(1) increase power and health by one for " + powerUpCost + " mana(ends turn)");
         }
         if (mage.mana >= 7 || mage.dice.size() >= 10) {
-            System.out.println("(2) summon a companion for min 7 mana(ends turn)");
-
+            System.out.println("(2) summon a companion min mana cost of 7(ends turn)");
         }
         if (mage.companionDice.size() > 0) {
             System.out.println("(3) attack with companions(ends turn)");
