@@ -127,7 +127,7 @@ public class Mage extends Player {
                 if (ready.equals("EXIT")) {
                     System.out.println("ok");
                     Game.isRunning = false;
-                } else if (ready.toUpperCase(Locale.ROOT).equals("CHICKEN")) {
+                } else if (ready.toUpperCase(Locale.ROOT).equals("CHICKEN") && this.name.toLowerCase(Locale.ROOT).equals("freddy")) {
                     health += 10;
                     mana += 10;
                 }
