@@ -175,7 +175,6 @@ public class Mage extends Player {
         }
 
         int index = Validator.validateInputInt("\nChoose companion");
-        scan.nextLine();
         int companionStrength = 0;
         switch (index) {
             case -1:
