@@ -88,17 +88,25 @@ public class Mage extends Player {
                 }
                 if (mana >= powerUpCost) {
                     powerUP(powerUpCost);
+                } else {
+                    System.out.println("action not available");
+                    takeAction();
                 }
-//                takeAction();
                 break;
             case 2:
                 if (mana >= 7 || dice.size() >= 10) {
                     addCompanion();
+                } else {
+                    System.out.println("action not available");
+                    takeAction();
                 }
                 break;
             case 3:
                 if (companionDice.size() > 0) {
                     attackWithCompanions();
+                } else {
+                    System.out.println("action not available");
+                    takeAction();
                 }
                 break;
             case 4:
