@@ -43,17 +43,21 @@ public class Mage extends Player {
         }
         // map(key=die.value,value = frequency of die)
         int netGain = 1;
-
+boolean bloodMana = false;
         for (int i = 1; i <= 6; i++) {
             if (freqOfDieMap.containsKey(i)) {
                 for (int j = 3; j <= freqOfDieMap.get(i); j++) {
                     netGain++;
-                    if (health < 4) {
-                        netGain++;
-                        System.out.println(Color.getColor(this) + name + Color.BLUE + "'s blood awakens mana reserves.");
+                    if (health < 4 && !bloodMana) {
+                        netGain += 2;
+                        bloodMana = true;
                     }
                 }
             }
+        }
+
+        if(bloodMana){
+            System.out.println(Color.getColor(this) + name + Color.BLUE + "'s blood awakens mana reserves.");
         }
 
         mana += netGain;
