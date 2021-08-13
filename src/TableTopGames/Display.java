@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Display {
     public static void dice(List<Die> list) {
-//        Collections.sort(list, Die::compareTo);
+        Collections.sort(list, Die::compareTo);
 //        System.out.println(Color.BLUE);
         StringBuilder dice = new StringBuilder();
         StringBuilder part1 = new StringBuilder();

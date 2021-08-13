@@ -278,14 +278,12 @@ public class Mage extends Player {
             if (mage != this) {
                 defender = mage;
             }
-            if (mage.companionDice.size() > 0) {
-                mage.rollAll();
-            }
+            mage.rollAll();
         }
         if (defender != null) {
-            System.out.println(Color.getColor(this) + color + " Mage " + name + "'s companion strength" + Color.RESET);
+            System.out.println(Color.getColor(this) + color + " Mage " + name + "'s companion strength");
             Display.dice(companionDice);
-            System.out.println(Color.getColor(defender) + defender.color + " Mage " + defender.name + "'s companion strength" + Color.RESET);
+            System.out.println(Color.getColor(defender) + defender.color + " Mage " + defender.name + "'s companion strength");
             Display.dice(defender.companionDice);
             //loop through all dice if defender has companionDice
             if (defender.companionDice.size() > 0) {
@@ -340,6 +338,15 @@ public class Mage extends Player {
                 System.out.printf("No defender %s%s Mage %s%s hit.\n", Color.getColor(defender), defender.color, defender.name, Color.RESET);
                 defender.health--;
             }
+        }
+    }
+
+    public void rollAll() {
+        for (Die die : dice) {
+            die.roll();
+        }
+        for (Die die : companionDice) {
+            die.roll();
         }
     }
 }
